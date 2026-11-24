@@ -148,14 +148,14 @@
       </div>
 
       <div class="bonus-footer">
-        <p id="bonusOfferStatus" class="muted">Sign in to your Turbo Tunez account (on the Turbo Tunez tab or right below) to credit your balance directly in Supabase.</p>
+        <p id="bonusOfferStatus" class="muted">Sign in to your Turbo Tunez account (on the Turbo Tunez tab) to credit your balance directly in Supabase.</p>
         <button type="button" id="openTunezFromOfferBtn" class="btn-ice btn-sm">Go to Turbo Tunez Exchange →</button>
       </div>
     </section>
   </main>
 
   <!-- VIEW 2: TURBO TUNEZ EXCHANGE (Integrated on the Same Site) -->
-  <div id="turboTunezView" class="wrap hidden">
+  <div id="turboTunezView" class="wrap tunez-wrap hidden">
     <div class="card">
       <div class="row-between">
         <div>
@@ -191,164 +191,195 @@
       <button class="tt-subtab btn-secondary btn-sm" data-ttpage="rules" type="button">Rules</button>
     </div>
 
-    <!-- Shared Active Player -->
-    <div id="activePlayerCard" class="card">
-      <div class="row-between" style="margin-bottom:8px;">
-        <h2 style="margin:0;">Active Listening Player</h2>
-        <button id="loopToggleBtn" class="btn-secondary btn-sm" type="button">↻ Loop Track: OFF</button>
-      </div>
-      <p id="nowPlayingLabel" class="muted">Pick a track from the <strong>Live Community Queue</strong> or <strong>Need Credits?</strong> below.</p>
-      <div id="embedContainer"></div>
+    <!-- Corner Split: Left = Exchange Player & Queues, Right Corner = Credits Earned Chart -->
+    <div class="tunez-split">
+      <div class="tunez-main-col">
+        <!-- Shared Active Player -->
+        <div id="activePlayerCard" class="card">
+          <div class="row-between" style="margin-bottom:8px;">
+            <h2 style="margin:0;">Active Listening Player</h2>
+            <button id="loopToggleBtn" class="btn-secondary btn-sm" type="button">↻ Loop Track: OFF</button>
+          </div>
+          <p id="nowPlayingLabel" class="muted">Pick a track from the <strong>Live Community Queue</strong> or <strong>Need Credits?</strong> below.</p>
+          <div id="embedContainer"></div>
 
-      <div id="scBonusBox" class="sc-actions-box hidden">
-        <strong style="font-size:14px; color:#ff9e6d;">SoundCloud Bonus Engagement (+1 Credit per completed action, 1x per track)</strong>
-        <p class="muted" style="margin:4px 0 8px;">Open the link on SoundCloud, perform the action, then check it off.</p>
-        <div id="scTasksContainer"></div>
+          <div id="scBonusBox" class="sc-actions-box hidden">
+            <strong style="font-size:14px; color:#ff9e6d;">SoundCloud Bonus Engagement (+1 Credit per completed action, 1x per track)</strong>
+            <p class="muted" style="margin:4px 0 8px;">Open the link on SoundCloud, perform the action, then check it off.</p>
+            <div id="scTasksContainer"></div>
+          </div>
+
+          <div style="margin-top:14px; display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
+            <span>Verified play time: <strong id="timerDisplay">0</strong> / 28s</span>
+            <span id="playStateBadge" class="muted">Waiting for playback...</span>
+            <button id="claimBtn" type="button" disabled>Claim +1 Credit</button>
+            <button id="cancelSessionBtn" class="btn-secondary btn-sm hidden" type="button">Stop / Cancel</button>
+          </div>
+          <p id="sessionFeedbackMsg" class="muted" style="margin:10px 0 0;">Turn on <strong>↻ Loop Track</strong> to keep repeating a song and earning <strong>+1 Credit per loop</strong>.</p>
+        </div>
+
+        <!-- TT Page 1: Queue -->
+        <section id="tt-page-home">
+          <div class="card">
+            <div class="row-between" style="margin-bottom:10px;">
+              <h2 style="margin:0;">Live Community Queue</h2>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="filter-btn btn-sm" data-filter="all" type="button">All</button>
+                <button class="filter-btn btn-secondary btn-sm" data-filter="spotify" type="button">Spotify</button>
+                <button class="filter-btn btn-secondary btn-sm" data-filter="soundcloud" type="button">SoundCloud</button>
+                <button id="refreshQueueBtn" class="btn-secondary btn-sm" type="button">Refresh</button>
+              </div>
+            </div>
+            <div id="queueList" class="muted">Loading queue...</div>
+          </div>
+        </section>
+
+        <!-- TT Page 2: Need Credits? -->
+        <section id="tt-page-needcredits" class="hidden">
+          <div class="card card-grind">
+            <div class="row-between" style="margin-bottom:8px;">
+              <div>
+                <h2 style="margin:0 0 4px;">Need Credits? — Label Campaign Grind</h2>
+                <p class="muted" style="margin:0;">Play or loop label roster tracks on <strong>Spotify</strong> and <strong>SoundCloud</strong> to earn credits anytime.</p>
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="grind-filter-btn btn-sm" data-gfilter="all" type="button">All</button>
+                <button class="grind-filter-btn btn-secondary btn-sm" data-gfilter="spotify" type="button">Spotify</button>
+                <button class="grind-filter-btn btn-secondary btn-sm" data-gfilter="soundcloud" type="button">SoundCloud</button>
+              </div>
+            </div>
+
+            <div id="labelAdminBox" class="admin-box hidden" style="margin-top:14px;">
+              <strong style="font-size:13px; color:#cbb6ff;">Founder Roster Controls — Add Permanent "Need Credits?" Track (Costs 0 Credits)</strong>
+              <div style="display:flex; gap:6px; flex-wrap:wrap; margin:8px 0;">
+                <span class="muted" style="align-self:center;">Quick-fill roster artist:</span>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Edac">Edac</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Excape">Excape</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Jae.trapp">Jae.trapp</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Mistlordrx">Mistlordrx</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="KyleBoomin">KyleBoomin</button>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; align-items:center;">
+                <select id="labelPlatSelect">
+                  <option value="spotify">Spotify</option>
+                  <option value="soundcloud">SoundCloud</option>
+                </select>
+                <input id="labelArtistInput" placeholder="Label Artist Handle" style="min-width:160px;" />
+                <input id="labelTitleInput" placeholder="Artist - Track Name" style="min-width:210px;" />
+                <input id="labelUrlInput" placeholder="Direct Spotify or SoundCloud track link" style="min-width:260px;" />
+                <button id="addLabelTrackBtn" class="btn-sm" type="button">Add to Label Pool</button>
+              </div>
+              <p id="labelAdminMsg" class="muted" style="margin:4px 0 0;"></p>
+            </div>
+
+            <div id="needCreditsList" class="muted" style="margin-top:10px;">Loading label roster...</div>
+          </div>
+        </section>
+
+        <!-- TT Page 3: Promote Track -->
+        <section id="tt-page-promote" class="hidden">
+          <div class="card">
+            <h2>Launch a Song Campaign</h2>
+            <p class="muted" style="margin-top:0;">Choose <strong>Spotify</strong> or <strong>SoundCloud</strong> and allocate your credit budget (Min <strong>3 Credits</strong>).</p>
+
+            <div class="tab-row" style="margin-top:14px;">
+              <button type="button" id="platSelectSpotify" class="btn-sm">Spotify Campaign</button>
+              <button type="button" id="platSelectSoundCloud" class="btn-secondary btn-sm">SoundCloud Campaign</button>
+            </div>
+
+            <div style="max-width:500px;">
+              <label for="trackTitleInput">Artist &amp; Track Title</label>
+              <input id="trackTitleInput" placeholder="e.g. Edac - Track Name" style="width:100%;" />
+
+              <label id="trackUrlLabel" for="trackUrlInput">Spotify Track Link</label>
+              <input id="trackUrlInput" placeholder="https://open.spotify.com/track/..." style="width:100%;" />
+
+              <div id="scPromoteOptions" class="hidden">
+                <label for="artistProfileUrlInput">Your SoundCloud Artist Profile URL (optional, for Follows)</label>
+                <input id="artistProfileUrlInput" placeholder="https://soundcloud.com/your-artist-handle" style="width:100%;" />
+
+                <label>Requested SoundCloud Engagement Actions (1 Credit each when completed)</label>
+                <div class="check-grid">
+                  <label class="check-label"><input type="checkbox" checked disabled /> Listen (28s)</label>
+                  <label class="check-label"><input type="checkbox" id="optAllowLike" checked /> Like (+1 Cr)</label>
+                  <label class="check-label"><input type="checkbox" id="optAllowRepost" checked /> Repost (+1 Cr)</label>
+                  <label class="check-label"><input type="checkbox" id="optAllowFollow" /> Follow Artist (+1 Cr)</label>
+                </div>
+              </div>
+
+              <div class="budget-box">
+                <label style="margin-top:0;">Set Campaign Credit Budget (Minimum 3 Credits)</label>
+                <div class="preset-row">
+                  <button type="button" class="preset-btn selected" data-budget="3">3 Credits (Min)</button>
+                  <button type="button" class="preset-btn" data-budget="5">5 Credits</button>
+                  <button type="button" class="preset-btn" data-budget="10">10 Credits</button>
+                  <button type="button" class="preset-btn" data-budget="25">25 Credits</button>
+                  <button type="button" id="maxBudgetBtn" class="preset-btn">Max Balance</button>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                  <input id="budgetInput" type="number" min="3" step="1" value="3" style="width:120px; margin-bottom:0;" />
+                  <span class="muted">credits allocated</span>
+                </div>
+
+                <div class="budget-summary">
+                  <span>Pool Size: <strong id="targetListensDisplay" style="color:#6ef29b;">3 Credits in Pool</strong></span>
+                  <span class="muted">Your Balance: <strong id="promoteBalanceDisplay">0</strong> credits</span>
+                </div>
+              </div>
+
+              <button id="submitTrackBtn" type="button">Launch Spotify Campaign (3 Credits)</button>
+            </div>
+            <p id="submitMsg" class="muted" style="margin-bottom:0;"></p>
+          </div>
+        </section>
+
+        <!-- TT Page 4: My Tracks & Stats -->
+        <section id="tt-page-mytracks" class="hidden">
+          <div class="card">
+            <h2>My Campaigns &amp; Track Stats</h2>
+            <p class="muted">Live breakdown of <strong>Plays, Likes, Reposts, and Follows</strong> delivered across your Spotify and SoundCloud drops.</p>
+            <div id="myTracksList" class="muted">Sign in to view your submitted tracks and stats.</div>
+          </div>
+        </section>
+
+        <!-- TT Page 5: Rules -->
+        <section id="tt-page-rules" class="hidden">
+          <div class="card">
+            <h2>How Turbo Tunez Works</h2>
+            <p class="muted">1. Play any track in the queue or <strong>Need Credits?</strong> for 28 verified seconds to earn <strong>+1 Credit</strong> (or turn on <strong>↻ Loop Track</strong> to loop).</p>
+            <p class="muted">2. Support <strong>You Can’t Kill A Cold Killa</strong> on the homepage to claim <strong>+20 Credits</strong> (SoundCloud Like), <strong>+40 Credits</strong> (SoundCloud Repost), and <strong>+50 Credits</strong> (Spotify Save) — up to <strong>+110 Credits</strong> total.</p>
+          </div>
+        </section>
       </div>
 
-      <div style="margin-top:14px; display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
-        <span>Verified play time: <strong id="timerDisplay">0</strong> / 28s</span>
-        <span id="playStateBadge" class="muted">Waiting for playback...</span>
-        <button id="claimBtn" type="button" disabled>Claim +1 Credit</button>
-        <button id="cancelSessionBtn" class="btn-secondary btn-sm hidden" type="button">Stop / Cancel</button>
-      </div>
-      <p id="sessionFeedbackMsg" class="muted" style="margin:10px 0 0;">Turn on <strong>↻ Loop Track</strong> to keep repeating a song and earning <strong>+1 Credit per loop</strong>.</p>
+      <!-- RIGHT CORNER WIDGET: TOP CREDITS EARNED CHART -->
+      <aside class="tunez-corner-col">
+        <div class="card chart-corner-card">
+          <div class="row-between" style="margin-bottom:6px;">
+            <h2 style="margin:0; font-size:15px;">🏆 Credits Earned Chart</h2>
+            <button id="refreshChartBtn" type="button" class="btn-secondary btn-sm" style="padding:3px 8px; font-size:11px;">↻</button>
+          </div>
+          <p class="muted" style="font-size:12px; margin:0 0 12px;">Most active listeners ranked by credits earned from listening to songs.</p>
+          <div id="creditsChartList" class="chart-bars">
+            <p class="muted">Loading leaderboard...</p>
+          </div>
+        </div>
+      </aside>
     </div>
-
-    <!-- TT Page 1: Queue -->
-    <section id="tt-page-home">
-      <div class="card">
-        <div class="row-between" style="margin-bottom:10px;">
-          <h2 style="margin:0;">Live Community Queue</h2>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button class="filter-btn btn-sm" data-filter="all" type="button">All</button>
-            <button class="filter-btn btn-secondary btn-sm" data-filter="spotify" type="button">Spotify</button>
-            <button class="filter-btn btn-secondary btn-sm" data-filter="soundcloud" type="button">SoundCloud</button>
-            <button id="refreshQueueBtn" class="btn-secondary btn-sm" type="button">Refresh</button>
-          </div>
-        </div>
-        <div id="queueList" class="muted">Loading queue...</div>
-      </div>
-    </section>
-
-    <!-- TT Page 2: Need Credits? -->
-    <section id="tt-page-needcredits" class="hidden">
-      <div class="card card-grind">
-        <div class="row-between" style="margin-bottom:8px;">
-          <div>
-            <h2 style="margin:0 0 4px;">Need Credits? — Label Campaign Grind</h2>
-            <p class="muted" style="margin:0;">Play or loop label roster tracks on <strong>Spotify</strong> and <strong>SoundCloud</strong> to earn credits anytime.</p>
-          </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button class="grind-filter-btn btn-sm" data-gfilter="all" type="button">All</button>
-            <button class="grind-filter-btn btn-secondary btn-sm" data-gfilter="spotify" type="button">Spotify</button>
-            <button class="grind-filter-btn btn-secondary btn-sm" data-gfilter="soundcloud" type="button">SoundCloud</button>
-          </div>
-        </div>
-
-        <div id="labelAdminBox" class="admin-box hidden" style="margin-top:14px;">
-          <strong style="font-size:13px; color:#cbb6ff;">Founder Roster Controls — Add Permanent "Need Credits?" Track (Costs 0 Credits)</strong>
-          <div style="display:flex; gap:6px; flex-wrap:wrap; margin:8px 0;">
-            <span class="muted" style="align-self:center;">Quick-fill roster artist:</span>
-            <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Edac">Edac</button>
-            <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Excape">Excape</button>
-            <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Jae.trapp">Jae.trapp</button>
-            <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Mistlordrx">Mistlordrx</button>
-            <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="KyleBoomin">KyleBoomin</button>
-          </div>
-          <div style="display:flex; flex-wrap:wrap; align-items:center;">
-            <select id="labelPlatSelect">
-              <option value="spotify">Spotify</option>
-              <option value="soundcloud">SoundCloud</option>
-            </select>
-            <input id="labelArtistInput" placeholder="Label Artist Handle" style="min-width:160px;" />
-            <input id="labelTitleInput" placeholder="Artist - Track Name" style="min-width:210px;" />
-            <input id="labelUrlInput" placeholder="Direct Spotify or SoundCloud track link" style="min-width:260px;" />
-            <button id="addLabelTrackBtn" class="btn-sm" type="button">Add to Label Pool</button>
-          </div>
-          <p id="labelAdminMsg" class="muted" style="margin:4px 0 0;"></p>
-        </div>
-
-        <div id="needCreditsList" class="muted" style="margin-top:10px;">Loading label roster...</div>
-      </div>
-    </section>
-
-    <!-- TT Page 3: Promote Track -->
-    <section id="tt-page-promote" class="hidden">
-      <div class="card">
-        <h2>Launch a Song Campaign</h2>
-        <p class="muted" style="margin-top:0;">Choose <strong>Spotify</strong> or <strong>SoundCloud</strong> and allocate your credit budget (Min <strong>3 Credits</strong>).</p>
-
-        <div class="tab-row" style="margin-top:14px;">
-          <button type="button" id="platSelectSpotify" class="btn-sm">Spotify Campaign</button>
-          <button type="button" id="platSelectSoundCloud" class="btn-secondary btn-sm">SoundCloud Campaign</button>
-        </div>
-
-        <div style="max-width:500px;">
-          <label for="trackTitleInput">Artist &amp; Track Title</label>
-          <input id="trackTitleInput" placeholder="e.g. Edac - Track Name" style="width:100%;" />
-
-          <label id="trackUrlLabel" for="trackUrlInput">Spotify Track Link</label>
-          <input id="trackUrlInput" placeholder="https://open.spotify.com/track/..." style="width:100%;" />
-
-          <div id="scPromoteOptions" class="hidden">
-            <label for="artistProfileUrlInput">Your SoundCloud Artist Profile URL (optional, for Follows)</label>
-            <input id="artistProfileUrlInput" placeholder="https://soundcloud.com/your-artist-handle" style="width:100%;" />
-
-            <label>Requested SoundCloud Engagement Actions (1 Credit each when completed)</label>
-            <div class="check-grid">
-              <label class="check-label"><input type="checkbox" checked disabled /> Listen (28s)</label>
-              <label class="check-label"><input type="checkbox" id="optAllowLike" checked /> Like (+1 Cr)</label>
-              <label class="check-label"><input type="checkbox" id="optAllowRepost" checked /> Repost (+1 Cr)</label>
-              <label class="check-label"><input type="checkbox" id="optAllowFollow" /> Follow Artist (+1 Cr)</label>
-            </div>
-          </div>
-
-          <div class="budget-box">
-            <label style="margin-top:0;">Set Campaign Credit Budget (Minimum 3 Credits)</label>
-            <div class="preset-row">
-              <button type="button" class="preset-btn selected" data-budget="3">3 Credits (Min)</button>
-              <button type="button" class="preset-btn" data-budget="5">5 Credits</button>
-              <button type="button" class="preset-btn" data-budget="10">10 Credits</button>
-              <button type="button" class="preset-btn" data-budget="25">25 Credits</button>
-              <button type="button" id="maxBudgetBtn" class="preset-btn">Max Balance</button>
-            </div>
-
-            <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-              <input id="budgetInput" type="number" min="3" step="1" value="3" style="width:120px; margin-bottom:0;" />
-              <span class="muted">credits allocated</span>
-            </div>
-
-            <div class="budget-summary">
-              <span>Pool Size: <strong id="targetListensDisplay" style="color:#6ef29b;">3 Credits in Pool</strong></span>
-              <span class="muted">Your Balance: <strong id="promoteBalanceDisplay">0</strong> credits</span>
-            </div>
-          </div>
-
-          <button id="submitTrackBtn" type="button">Launch Spotify Campaign (3 Credits)</button>
-        </div>
-        <p id="submitMsg" class="muted" style="margin-bottom:0;"></p>
-      </div>
-    </section>
-
-    <!-- TT Page 4: My Tracks & Stats -->
-    <section id="tt-page-mytracks" class="hidden">
-      <div class="card">
-        <h2>My Campaigns &amp; Track Stats</h2>
-        <p class="muted">Live breakdown of <strong>Plays, Likes, Reposts, and Follows</strong> delivered across your Spotify and SoundCloud drops.</p>
-        <div id="myTracksList" class="muted">Sign in to view your submitted tracks and stats.</div>
-      </div>
-    </section>
-
-    <!-- TT Page 5: Rules -->
-    <section id="tt-page-rules" class="hidden">
-      <div class="card">
-        <h2>How Turbo Tunez Works</h2>
-        <p class="muted">1. Play any track in the queue or <strong>Need Credits?</strong> for 28 verified seconds to earn <strong>+1 Credit</strong> (or turn on <strong>↻ Loop Track</strong> to loop).</p>
-        <p class="muted">2. Support <strong>You Can’t Kill A Cold Killa</strong> on the homepage to claim <strong>+20 Credits</strong> (SoundCloud Like), <strong>+40 Credits</strong> (SoundCloud Repost), and <strong>+50 Credits</strong> (Spotify Save) — up to <strong>+110 Credits</strong> total.</p>
-      </div>
-    </section>
   </div>
+
+  <!-- FLOATING BOTTOM LIVE TRAFFIC WIDGET (Green Dot = Online Now, Red Dot = Visits Today) -->
+  <aside class="live-traffic-box" aria-label="Live site traffic">
+    <div class="traffic-row">
+      <span class="dot-green" aria-hidden="true"></span>
+      <span class="traffic-label"><strong id="onlineNowCount">1</strong> online right now</span>
+    </div>
+    <div class="traffic-row">
+      <span class="dot-red" aria-hidden="true"></span>
+      <span class="traffic-label"><strong id="visitsTodayCount">1</strong> Visits today</span>
+    </div>
+  </aside>
 
   <!-- Spotify & SoundCloud Player APIs -->
   <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
@@ -362,6 +393,7 @@
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
     const STORAGE_KEY = 'turbo_tunez_session_v2';
+    const VISITOR_KEY = 'edac_live_visitor_id_v1';
     const OFFER_CLAIM_PREFIX = 'yckack_offer_claimed_';
     const LISTEN_GOAL = 28;
     const MIN_CAMPAIGN_BUDGET = 3;
@@ -387,6 +419,173 @@
     let pendingUri = null;
     let scActionState = { like: false, repost: false, follow: false };
 
+    // ---------------------------------------------------------
+    // 1. REAL-TIME ONLINE NOW (GREEN DOT) + VISITS TODAY (RED DOT)
+    //    Uses Supabase Realtime Presence + 3-second polling/heartbeat
+    // ---------------------------------------------------------
+    function getVisitorId() {
+      let vid = localStorage.getItem(VISITOR_KEY);
+      if (!vid) {
+        vid = 'v_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem(VISITOR_KEY, vid);
+      }
+      return vid;
+    }
+
+    const visitorId = getVisitorId();
+    let presenceOnlineCount = 1;
+    let dbOnlineCount = 1;
+    let visitsTodayCount = 1;
+
+    function renderTrafficCounts() {
+      const liveOnline = Math.max(1, presenceOnlineCount, dbOnlineCount);
+      const liveToday = Math.max(liveOnline, visitsTodayCount);
+      document.getElementById('onlineNowCount').textContent = String(liveOnline);
+      document.getElementById('visitsTodayCount').textContent = String(liveToday);
+    }
+
+    // Supabase Realtime Presence channel for sub-3s live online count
+    const presenceChannel = supabase.channel('edac-live-visitors', {
+      config: { presence: { key: visitorId } }
+    });
+
+    presenceChannel
+      .on('presence', { event: 'sync' }, () => {
+        const state = presenceChannel.presenceState();
+        const keys = Object.keys(state);
+        presenceOnlineCount = Math.max(1, keys.length);
+        renderTrafficCounts();
+      })
+      .subscribe(async (status) => {
+        if (status === 'SUBSCRIBED') {
+          await presenceChannel.track({
+            visitor_id: visitorId,
+            online_at: new Date().toISOString()
+          });
+        }
+      });
+
+    // Optional DB heartbeat + Visits Today sync (every 3 seconds)
+    let siteVisitsTableAvailable = true;
+
+    async function syncTrafficHeartbeatAndCounts() {
+      if (!siteVisitsTableAvailable) {
+        renderTrafficCounts();
+        return;
+      }
+
+      const now = new Date();
+      const nowIso = now.toISOString();
+      const todayKey = nowIso.slice(0, 10); // YYYY-MM-DD UTC
+      const activeCutoffIso = new Date(now.getTime() - 12000).toISOString(); // active within 12s
+
+      try {
+        const { error: upsertErr } = await supabase
+          .from('site_visits')
+          .upsert(
+            [{ visitor_id: visitorId, visit_date: todayKey, last_seen_at: nowIso }],
+            { onConflict: 'visitor_id,visit_date' }
+          );
+
+        if (upsertErr) {
+          siteVisitsTableAvailable = false;
+          renderTrafficCounts();
+          return;
+        }
+
+        const [{ count: onlineCnt }, { count: todayCnt }] = await Promise.all([
+          supabase
+            .from('site_visits')
+            .select('*', { count: 'exact', head: true })
+            .gte('last_seen_at', activeCutoffIso),
+          supabase
+            .from('site_visits')
+            .select('*', { count: 'exact', head: true })
+            .eq('visit_date', todayKey)
+        ]);
+
+        if (typeof onlineCnt === 'number') dbOnlineCount = Math.max(1, onlineCnt);
+        if (typeof todayCnt === 'number') visitsTodayCount = Math.max(1, todayCnt);
+        renderTrafficCounts();
+      } catch (_) {
+        renderTrafficCounts();
+      }
+    }
+
+    // Run immediately and refresh every 3 seconds
+    syncTrafficHeartbeatAndCounts();
+    setInterval(syncTrafficHeartbeatAndCounts, 3000);
+
+    // ---------------------------------------------------------
+    // 2. CREDITS EARNED CHART (TURBO TUNEZ CORNER LEADERBOARD)
+    // ---------------------------------------------------------
+    async function loadCreditsEarnedChart() {
+      const container = document.getElementById('creditsChartList');
+      try {
+        // Aggregate verified song listens from `listens` + join profile handles
+        const [{ data: listensRows, error: listensErr }, { data: profilesRows }] = await Promise.all([
+          supabase.from('listens').select('user_id, did_like, did_repost, did_follow'),
+          supabase.from('profiles').select('id, username, credits')
+        ]);
+
+        if (listensErr) {
+          container.innerHTML = `<p class="muted">Could not load chart: ${listensErr.message}</p>`;
+          return;
+        }
+
+        const userMap = new Map();
+        (profilesRows || []).forEach((p) => {
+          userMap.set(p.id, { username: p.username, earned: 0, listens: 0 });
+        });
+
+        (listensRows || []).forEach((row) => {
+          if (!row.user_id) return;
+          const entry = userMap.get(row.user_id) || { username: 'Listener', earned: 0, listens: 0 };
+          const rowCredits = 1 + (row.did_like ? 1 : 0) + (row.did_repost ? 1 : 0) + (row.did_follow ? 1 : 0);
+          entry.earned += rowCredits;
+          entry.listens += 1;
+          userMap.set(row.user_id, entry);
+        });
+
+        const ranked = Array.from(userMap.values())
+          .filter((u) => u.earned > 0)
+          .sort((a, b) => b.earned - a.earned)
+          .slice(0, 8);
+
+        if (ranked.length === 0) {
+          container.innerHTML = '<p class="muted" style="font-size:12px;">No listening credits earned yet. Play a track to take #1!</p>';
+          return;
+        }
+
+        const topScore = Math.max(1, ranked[0].earned);
+        container.innerHTML = '';
+
+        ranked.forEach((member, idx) => {
+          const pct = Math.max(12, Math.round((member.earned / topScore) * 100));
+          const item = document.createElement('div');
+          item.className = 'chart-item';
+          item.innerHTML = `
+            <div class="chart-item-head">
+              <span class="chart-rank">#${idx + 1} <strong>@${member.username}</strong></span>
+              <span class="chart-score">+${member.earned} Cr</span>
+            </div>
+            <div class="chart-bar-track">
+              <div class="chart-bar-fill" style="width:${pct}%"></div>
+            </div>
+            <div class="chart-sub">${member.listens} verified song ${member.listens === 1 ? 'play' : 'plays'}</div>
+          `;
+          container.appendChild(item);
+        });
+      } catch (_) {
+        container.innerHTML = '<p class="muted">Unable to load chart right now.</p>';
+      }
+    }
+
+    document.getElementById('refreshChartBtn').onclick = loadCreditsEarnedChart;
+
+    // ---------------------------------------------------------
+    // 3. SITE NAVIGATION & HOMEPAGE INTERACTIONS
+    // ---------------------------------------------------------
     function isAdminUser() {
       return Boolean(currentUser && LABEL_ADMIN_HANDLES.includes(currentUser.username.toLowerCase()));
     }
@@ -408,6 +607,7 @@
       if (isTunez) {
         loadQueue();
         loadNeedCreditsTracks();
+        loadCreditsEarnedChart();
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -834,6 +1034,7 @@
       updateAuthUI();
       await loadQueue();
       await loadNeedCreditsTracks();
+      await loadCreditsEarnedChart();
     }
 
     async function refreshUser() {
@@ -1271,6 +1472,7 @@
       }).eq('id', latestTrack.id);
 
       await refreshUser();
+      await loadCreditsEarnedChart();
 
       if (loopTrackEnabled && (latestTrack.is_label_campaign || nextBudget > 0)) {
         loopCountThisSession += 1;
@@ -1346,6 +1548,7 @@
       updateAuthUI();
       await loadQueue();
       await loadNeedCreditsTracks();
+      await loadCreditsEarnedChart();
     })();
   </script>
 </body>

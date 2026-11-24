@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDAC — You Can’t Kill A Cold Killa</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body class="mode-music">
+  <!-- Music Homepage Background GIF -->
+  <div id="yckackBg" class="yckack-bg" aria-hidden="true"></div>
+
+  <!-- Turbo Tunez Lava Lamp Video Backdrop (Active when viewing Turbo Tunez) -->
+  <video id="tunezVideoBg" class="bg-video hidden" autoplay loop muted playsinline>
+    <source src="backgroundtunez.mp4" type="video/mp4" />
+  </video>
+  <div id="bgScrim" class="bg-scrim"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-group">
+        <a href="#music" id="edacBrandLink" class="brand">EDAC</a>
+        <span class="release-tag">YOU CAN’T KILL A COLD KILLA</span>
+      </div>
+
+      <nav class="main-nav">
+        <button id="navMusicBtn" class="nav-tab active" type="button">Music Hub</button>
+        <button id="navTunezBtn" class="nav-tab promo-tab" type="button">Turbo Tunez ⚡</button>
+      </nav>
+
+      <div class="wallet-pill">
+        <span>Credits: <strong id="headerCredits">0</strong></span>
+        <span id="headerUserBadge" class="user-chip hidden"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- VIEW 1: EDAC / YOU CAN'T KILL A COLD KILLA HOMEPAGE -->
+  <main id="musicHomeView" class="wrap">
+    <section class="hero">
+      <p class="eyebrow">OFFICIAL RELEASE</p>
+      <h1>You Can’t Kill A Cold Killa</h1>
+      <p class="subtitle">Stream Edac’s latest You Can’t Kill A Cold Killa tape.</p>
+
+      <div class="hero-actions">
+        <a href="https://elasticstage.com/soundcloud/releases/edac-you-cant-kill-a-cold-killa-album" target="_blank" rel="noopener noreferrer" class="btn-ice">Buy Vinyl / Release Here</a>
+        <button type="button" id="heroStreamScrollBtn" class="btn-ghost">Pick Streaming Platform</button>
+        <button type="button" id="heroBonusScrollBtn" class="btn-bonus">Claim Up to +110 Bonus Credits</button>
+      </div>
+    </section>
+
+    <!-- Two 3D GIFs: tapebuy1.gif & tapestream1.gif -->
+    <section class="media-stage">
+      <!-- GIF 1: tapebuy1.gif -> Buy link -->
+      <a href="https://elasticstage.com/soundcloud/releases/edac-you-cant-kill-a-cold-killa-album" target="_blank" rel="noopener noreferrer" class="gif-card buy-card">
+        <div class="gif-frame">
+          <img src="./tapebuy1.gif" alt="Buy You Can’t Kill A Cold Killa Vinyl / Release" />
+        </div>
+        <div class="gif-meta">
+          <span class="gif-title">Buy Release (Vinyl / Store)</span>
+          <span class="gif-sub">Opens Elastic Stage Purchase Page ↗</span>
+        </div>
+      </a>
+
+      <!-- GIF 2: tapestream1.gif -> Prompts SoundCloud, Spotify, or Apple Music -->
+      <div id="streamSection" class="gif-card stream-card">
+        <button type="button" id="streamGifTrigger" class="gif-trigger" aria-expanded="true" aria-controls="streamPickerPanel">
+          <div class="gif-frame">
+            <img src="./tapestream1.gif" alt="Stream You Can’t Kill A Cold Killa" />
+          </div>
+          <div class="gif-meta">
+            <span class="gif-title">Stream Tape</span>
+            <span class="gif-sub">Choose SoundCloud, Spotify, or Apple Music</span>
+          </div>
+        </button>
+
+        <div id="streamPickerPanel" class="stream-picker">
+          <p class="picker-label">Select where you want to stream <strong>You Can’t Kill A Cold Killa</strong>:</p>
+          <div class="platform-choices">
+            <a href="https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa" target="_blank" rel="noopener noreferrer" class="plat-link sc-link">
+              <span>SoundCloud</span>
+              <span>↗</span>
+            </a>
+            <a href="https://open.spotify.com/album/6SJpK0m2zdpIjzjwOVnWAF?si=vpUb3KkiSFqyV3637ps0vg" target="_blank" rel="noopener noreferrer" class="plat-link sp-link">
+              <span>Spotify</span>
+              <span>↗</span>
+            </a>
+            <a href="https://music.apple.com/us/album/you-cant-kill-a-cold-killa/6838158125" target="_blank" rel="noopener noreferrer" class="plat-link am-link">
+              <span>Apple Music</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Generous Bonus Credit Offer Card -->
+    <section id="bonusOfferSection" class="bonus-card">
+      <div class="bonus-header">
+        <div>
+          <span class="bonus-pill">HUGE ARTIST SUPPORT OFFER</span>
+          <h2>Support <em>You Can’t Kill A Cold Killa</em> &amp; Stack Up to +110 Turbo Tunez Credits</h2>
+          <p class="muted">Want extra credits to promote your own tracks on Turbo Tunez? Support the tape across SoundCloud and Spotify and claim generous credit drops:</p>
+        </div>
+        <div class="bonus-total-box">
+          <span class="bonus-total-label">Total Possible</span>
+          <strong class="bonus-total-num">+110 Credits</strong>
+        </div>
+      </div>
+
+      <div class="bonus-grid">
+        <div class="bonus-tier">
+          <div class="tier-top">
+            <span class="tier-reward">+20 Credits</span>
+            <span class="tier-plat">SoundCloud</span>
+          </div>
+          <p class="tier-desc">Like the <strong>You Can’t Kill A Cold Killa</strong> set on SoundCloud.</p>
+          <div class="tier-actions">
+            <a href="https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa" target="_blank" rel="noopener noreferrer" class="mini-link">1. Like on SoundCloud ↗</a>
+            <button type="button" class="claim-offer-btn" data-offer="sc_like" data-credits="20">Claim +20 Credits</button>
+          </div>
+        </div>
+
+        <div class="bonus-tier">
+          <div class="tier-top">
+            <span class="tier-reward">+40 Credits</span>
+            <span class="tier-plat">SoundCloud</span>
+          </div>
+          <p class="tier-desc">Repost the <strong>You Can’t Kill A Cold Killa</strong> set on SoundCloud.</p>
+          <div class="tier-actions">
+            <a href="https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa" target="_blank" rel="noopener noreferrer" class="mini-link">1. Repost on SoundCloud ↗</a>
+            <button type="button" class="claim-offer-btn" data-offer="sc_repost" data-credits="40">Claim +40 Credits</button>
+          </div>
+        </div>
+
+        <div class="bonus-tier">
+          <div class="tier-top">
+            <span class="tier-reward">+50 Credits</span>
+            <span class="tier-plat">Spotify</span>
+          </div>
+          <p class="tier-desc">Save / add the <strong>You Can’t Kill A Cold Killa</strong> album to your Spotify library.</p>
+          <div class="tier-actions">
+            <a href="https://open.spotify.com/album/6SJpK0m2zdpIjzjwOVnWAF?si=vpUb3KkiSFqyV3637ps0vg" target="_blank" rel="noopener noreferrer" class="mini-link">1. Add on Spotify ↗</a>
+            <button type="button" class="claim-offer-btn" data-offer="sp_save" data-credits="50">Claim +50 Credits</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bonus-footer">
+        <p id="bonusOfferStatus" class="muted">Sign in to your Turbo Tunez account (on the Turbo Tunez tab) to credit your balance directly in Supabase.</p>
+        <button type="button" id="openTunezFromOfferBtn" class="btn-ice btn-sm">Go to Turbo Tunez Exchange →</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- VIEW 2: TURBO TUNEZ EXCHANGE (Integrated on the Same Site) -->
+  <div id="turboTunezView" class="wrap tunez-wrap hidden">
+    <div class="card">
+      <div class="row-between">
+        <div>
+          <h2 style="margin:0 0 4px;">Turbo Tunez Exchange</h2>
+          <p class="muted" style="margin:0;">Earn credits from the community queue, <strong>Need Credits?</strong> label tracks, or your <strong>You Can’t Kill A Cold Killa</strong> support rewards above.</p>
+        </div>
+        <button type="button" id="backToMusicBtn" class="btn-secondary btn-sm">← Back to You Can’t Kill A Cold Killa</button>
+      </div>
+    </div>
+
+    <!-- Auth Card -->
+    <div id="authCard" class="card">
+      <div class="tab-row">
+        <button id="modeSignInBtn" class="btn-sm" type="button">Sign In</button>
+        <button id="modeSignUpBtn" class="btn-secondary btn-sm" type="button">Create Account</button>
+      </div>
+      <h2 id="authHeading">Sign In to Turbo Tunez</h2>
+      <p id="authSubtext" class="muted" style="margin-top:0;">Enter your artist/listener handle and password.</p>
+      <div style="display:flex; flex-wrap:wrap; align-items:center;">
+        <input id="usernameInput" placeholder="Handle (e.g. Edac)" style="min-width:210px;" />
+        <input id="passwordInput" type="password" placeholder="Password" style="min-width:200px;" />
+        <button id="authSubmitBtn" type="button">Sign In</button>
+      </div>
+      <p id="userStatus" class="muted" style="margin-bottom:0;"></p>
+    </div>
+
+    <!-- Sub-tabs inside Turbo Tunez -->
+    <div class="tab-row">
+      <button class="tt-subtab btn-sm" data-ttpage="home" type="button">Queue</button>
+      <button class="tt-subtab btn-secondary btn-sm" data-ttpage="needcredits" type="button">Need Credits?</button>
+      <button class="tt-subtab btn-secondary btn-sm" data-ttpage="promote" type="button">Promote Track</button>
+      <button class="tt-subtab btn-secondary btn-sm" data-ttpage="mytracks" type="button">My Tracks &amp; Stats</button>
+      <button class="tt-subtab btn-secondary btn-sm" data-ttpage="rules" type="button">Rules</button>
+    </div>
+
+    <!-- Corner Split: Left = Exchange Player & Queues, Right Corner = Credits Earned Chart -->
+    <div class="tunez-split">
+      <div class="tunez-main-col">
+        <!-- Shared Active Player -->
+        <div id="activePlayerCard" class="card">
+          <div class="row-between" style="margin-bottom:8px;">
+            <h2 style="margin:0;">Active Listening Player</h2>
+            <button id="loopToggleBtn" class="btn-secondary btn-sm" type="button">↻ Loop Track: OFF</button>
+          </div>
+          <p id="nowPlayingLabel" class="muted">Pick a track from the <strong>Live Community Queue</strong> or <strong>Need Credits?</strong> below.</p>
+          <div id="embedContainer"></div>
+
+          <div id="scBonusBox" class="sc-actions-box hidden">
+            <strong style="font-size:14px; color:#ff9e6d;">SoundCloud Bonus Engagement (+1 Credit per completed action, 1x per track)</strong>
+            <p class="muted" style="margin:4px 0 8px;">Open the link on SoundCloud, perform the action, then check it off.</p>
+            <div id="scTasksContainer"></div>
+          </div>
+
+          <div style="margin-top:14px; display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
+            <span>Verified play time: <strong id="timerDisplay">0</strong> / 28s</span>
+            <span id="playStateBadge" class="muted">Waiting for playback...</span>
+            <button id="claimBtn" type="button" disabled>Claim +1 Credit</button>
+            <button id="cancelSessionBtn" class="btn-secondary btn-sm hidden" type="button">Stop / Cancel</button>
+          </div>
+          <p id="sessionFeedbackMsg" class="muted" style="margin:10px 0 0;">Turn on <strong>↻ Loop Track</strong> to keep repeating a song and earning <strong>+1 Credit per loop</strong>.</p>
+        </div>
+
+        <!-- TT Page 1: Queue -->
+        <section id="tt-page-home">
+          <div class="card">
+            <div class="row-between" style="margin-bottom:10px;">
+              <h2 style="margin:0;">Live Community Queue</h2>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="filter-btn btn-sm" data-filter="all" type="button">All</button>
+                <button class="filter-btn btn-secondary btn-sm" data-filter="spotify" type="button">Spotify</button>
+                <button class="filter-btn btn-secondary btn-sm" data-filter="soundcloud" type="button">SoundCloud</button>
+                <button id="refreshQueueBtn" class="btn-secondary btn-sm" type="button">Refresh</button>
+              </div>
+            </div>
+            <div id="queueList" class="muted">Loading queue...</div>
+          </div>
+        </section>
+
+        <!-- TT Page 2: Need Credits? -->
+        <section id="tt-page-needcredits" class="hidden">
+          <div class="card card-grind">
+            <div class="row-between" style="margin-bottom:8px;">
+              <div>
+                <h2 style="margin:0 0 4px;">Need Credits? — Label Campaign Grind</h2>
+                <p class="muted" style="margin:0;">Play or loop label roster tracks on <strong>Spotify</strong> and <strong>SoundCloud</strong> to earn credits anytime.</p>
+              </div>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="grind-filter-btn btn-sm" data-gfilter="all" type="button">All</button>
+                <button class="grind-filter-btn btn-secondary btn-sm" data-gfilter="spotify" type="button">Spotify</button>
+                <button class="grind-filter-btn btn-secondary btn-sm" data-gfilter="soundcloud" type="button">SoundCloud</button>
+              </div>
+            </div>
+
+            <div id="labelAdminBox" class="admin-box hidden" style="margin-top:14px;">
+              <strong style="font-size:13px; color:#cbb6ff;">Founder Roster Controls — Add Permanent "Need Credits?" Track (Costs 0 Credits)</strong>
+              <div style="display:flex; gap:6px; flex-wrap:wrap; margin:8px 0;">
+                <span class="muted" style="align-self:center;">Quick-fill roster artist:</span>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Edac">Edac</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Excape">Excape</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Jae.trapp">Jae.trapp</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Mistlordrx">Mistlordrx</button>
+                <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="KyleBoomin">KyleBoomin</button>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; align-items:center;">
+                <select id="labelPlatSelect">
+                  <option value="spotify">Spotify</option>
+                  <option value="soundcloud">SoundCloud</option>
+                </select>
+                <input id="labelArtistInput" placeholder="Label Artist Handle" style="min-width:160px;" />
+                <input id="labelTitleInput" placeholder="Artist - Track Name" style="min-width:210px;" />
+                <input id="labelUrlInput" placeholder="Direct Spotify or SoundCloud track link" style="min-width:260px;" />
+                <button id="addLabelTrackBtn" class="btn-sm" type="button">Add to Label Pool</button>
+              </div>
+              <p id="labelAdminMsg" class="muted" style="margin:4px 0 0;"></p>
+            </div>
+
+            <div id="needCreditsList" class="muted" style="margin-top:10px;">Loading label roster...</div>
+          </div>
+        </section>
+
+        <!-- TT Page 3: Promote Track -->
+        <section id="tt-page-promote" class="hidden">
+          <div class="card">
+            <h2>Launch a Song Campaign</h2>
+            <p class="muted" style="margin-top:0;">Choose <strong>Spotify</strong> or <strong>SoundCloud</strong> and allocate your credit budget (Min <strong>3 Credits</strong>).</p>
+
+            <div class="tab-row" style="margin-top:14px;">
+              <button type="button" id="platSelectSpotify" class="btn-sm">Spotify Campaign</button>
+              <button type="button" id="platSelectSoundCloud" class="btn-secondary btn-sm">SoundCloud Campaign</button>
+            </div>
+
+            <div style="max-width:500px;">
+              <label for="trackTitleInput">Artist &amp; Track Title</label>
+              <input id="trackTitleInput" placeholder="e.g. Edac - Track Name" style="width:100%;" />
+
+              <label id="trackUrlLabel" for="trackUrlInput">Spotify Track Link</label>
+              <input id="trackUrlInput" placeholder="https://open.spotify.com/track/..." style="width:100%;" />
+
+              <div id="scPromoteOptions" class="hidden">
+                <label for="artistProfileUrlInput">Your SoundCloud Artist Profile URL (optional, for Follows)</label>
+                <input id="artistProfileUrlInput" placeholder="https://soundcloud.com/your-artist-handle" style="width:100%;" />
+
+                <label>Requested SoundCloud Engagement Actions (1 Credit each when completed)</label>
+                <div class="check-grid">
+                  <label class="check-label"><input type="checkbox" checked disabled /> Listen (28s)</label>
+                  <label class="check-label"><input type="checkbox" id="optAllowLike" checked /> Like (+1 Cr)</label>
+                  <label class="check-label"><input type="checkbox" id="optAllowRepost" checked /> Repost (+1 Cr)</label>
+                  <label class="check-label"><input type="checkbox" id="optAllowFollow" /> Follow Artist (+1 Cr)</label>
+                </div>
+              </div>
+
+              <div class="budget-box">
+                <label style="margin-top:0;">Set Campaign Credit Budget (Minimum 3 Credits)</label>
+                <div class="preset-row">
+                  <button type="button" class="preset-btn selected" data-budget="3">3 Credits (Min)</button>
+                  <button type="button" class="preset-btn" data-budget="5">5 Credits</button>
+                  <button type="button" class="preset-btn" data-budget="10">10 Credits</button>
+                  <button type="button" class="preset-btn" data-budget="25">25 Credits</button>
+                  <button type="button" id="maxBudgetBtn" class="preset-btn">Max Balance</button>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+                  <input id="budgetInput" type="number" min="3" step="1" value="3" style="width:120px; margin-bottom:0;" />
+                  <span class="muted">credits allocated</span>
+                </div>
+
+                <div class="budget-summary">
+                  <span>Pool Size: <strong id="targetListensDisplay" style="color:#6ef29b;">3 Credits in Pool</strong></span>
+                  <span class="muted">Your Balance: <strong id="promoteBalanceDisplay">0</strong> credits</span>
+                </div>
+              </div>
+
+              <button id="submitTrackBtn" type="button">Launch Spotify Campaign (3 Credits)</button>
+            </div>
+            <p id="submitMsg" class="muted" style="margin-bottom:0;"></p>
+          </div>
+        </section>
+
+        <!-- TT Page 4: My Tracks & Stats -->
+        <section id="tt-page-mytracks" class="hidden">
+          <div class="card">
+            <h2>My Campaigns &amp; Track Stats</h2>
+            <p class="muted">Live breakdown of <strong>Plays, Likes, Reposts, and Follows</strong> delivered across your Spotify and SoundCloud drops.</p>
+            <div id="myTracksList" class="muted">Sign in to view your submitted tracks and stats.</div>
+          </div>
+        </section>
+
+        <!-- TT Page 5: Rules -->
+        <section id="tt-page-rules" class="hidden">
+          <div class="card">
+            <h2>How Turbo Tunez Works</h2>
+            <p class="muted">1. Play any track in the queue or <strong>Need Credits?</strong> for 28 verified seconds to earn <strong>+1 Credit</strong> (or turn on <strong>↻ Loop Track</strong> to loop).</p>
+            <p class="muted">2. Support <strong>You Can’t Kill A Cold Killa</strong> on the homepage to claim <strong>+20 Credits</strong> (SoundCloud Like), <strong>+40 Credits</strong> (SoundCloud Repost), and <strong>+50 Credits</strong> (Spotify Save) — up to <strong>+110 Credits</strong> total.</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- RIGHT CORNER WIDGET: TOP CREDITS EARNED CHART -->
+      <aside class="tunez-corner-col">
+        <div class="card chart-corner-card">
+          <div class="row-between" style="margin-bottom:6px;">
+            <h2 style="margin:0; font-size:15px;">🏆 Credits Earned Chart</h2>
+            <button id="refreshChartBtn" type="button" class="btn-secondary btn-sm" style="padding:3px 8px; font-size:11px;">↻</button>
+          </div>
+          <p class="muted" style="font-size:12px; margin:0 0 12px;">Most active listeners ranked by credits earned from listening to songs.</p>
+          <div id="creditsChartList" class="chart-bars">
+            <p class="muted">Loading leaderboard...</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- FLOATING BOTTOM LIVE TRAFFIC WIDGET (Green Dot = Online Now, Red Dot = Visits Today) -->
+  <aside class="live-traffic-box" aria-label="Live site traffic">
+    <div class="traffic-row">
+      <span class="dot-green" aria-hidden="true"></span>
+      <span class="traffic-label"><strong id="onlineNowCount">1</strong> online right now</span>
+    </div>
+    <div class="traffic-row">
+      <span class="dot-red" aria-hidden="true"></span>
+      <span class="traffic-label"><strong id="visitsTodayCount">1</strong> Visits today</span>
+    </div>
+  </aside>
+
+  <!-- Spotify & SoundCloud Player APIs -->
+  <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+  <script src="https://w.soundcloud.com/player/api.js" async></script>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const SUPABASE_URL = 'https://gmwhupiolnyjunracaci.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_1IthYY_4_35O-luqYSqd0A_2HRRXtFb';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const STORAGE_KEY = 'turbo_tunez_session_v2';
+    const VISITOR_KEY = 'edac_live_visitor_id_v1';
+    const OFFER_CLAIM_PREFIX = 'yckack_offer_claimed_';
+    const LISTEN_GOAL = 28;
+    const MIN_CAMPAIGN_BUDGET = 3;
+    const LABEL_ADMIN_HANDLES = ['edac', 'cadesawmassacre', 'cadeloeffler'];
+
+    let currentUser = null;
+    let authMode = 'signin';
+    let promotePlatform = 'spotify';
+    let queueFilter = 'all';
+    let grindFilter = 'all';
+    let activeTrack = null;
+    let loopTrackEnabled = false;
+    let loopCountThisSession = 0;
+    let userListenCounts = new Map();
+    let secondsListened = 0;
+    let isActuallyPlaying = false;
+    let lastTickMs = null;
+    let scPollInterval = null;
+    let scWidgetInstance = null;
+    let creditClaimedForTrack = false;
+    let spotifyApi = null;
+    let embedController = null;
+    let pendingUri = null;
+    let scActionState = { like: false, repost: false, follow: false };
+
+    // ---------------------------------------------------------
+    // 1. REAL-TIME ONLINE NOW (GREEN DOT) + VISITS TODAY (RED DOT)
+    //    Uses Supabase Realtime Presence + 3-second polling/heartbeat
+    // ---------------------------------------------------------
+    function getVisitorId() {
+      let vid = localStorage.getItem(VISITOR_KEY);
+      if (!vid) {
+        vid = 'v_' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem(VISITOR_KEY, vid);
+      }
+      return vid;
+    }
+
+    const visitorId = getVisitorId();
+    let presenceOnlineCount = 1;
+    let dbOnlineCount = 1;
+    let visitsTodayCount = 1;
+
+    function renderTrafficCounts() {
+      const liveOnline = Math.max(1, presenceOnlineCount, dbOnlineCount);
+      const liveToday = Math.max(liveOnline, visitsTodayCount);
+      document.getElementById('onlineNowCount').textContent = String(liveOnline);
+      document.getElementById('visitsTodayCount').textContent = String(liveToday);
+    }
+
+    // Supabase Realtime Presence channel for sub-3s live online count
+    const presenceChannel = supabase.channel('edac-live-visitors', {
+      config: { presence: { key: visitorId } }
+    });
+
+    presenceChannel
+      .on('presence', { event: 'sync' }, () => {
+        const state = presenceChannel.presenceState();
+        const keys = Object.keys(state);
+        presenceOnlineCount = Math.max(1, keys.length);
+        renderTrafficCounts();
+      })
+      .subscribe(async (status) => {
+        if (status === 'SUBSCRIBED') {
+          await presenceChannel.track({
+            visitor_id: visitorId,
+            online_at: new Date().toISOString()
+          });
+        }
+      });
+
+    // Optional DB heartbeat + Visits Today sync (every 3 seconds)
+    let siteVisitsTableAvailable = true;
+
+    async function syncTrafficHeartbeatAndCounts() {
+      if (!siteVisitsTableAvailable) {
+        renderTrafficCounts();
+        return;
+      }
+
+      const now = new Date();
+      const nowIso = now.toISOString();
+      const todayKey = nowIso.slice(0, 10); // YYYY-MM-DD UTC
+      const activeCutoffIso = new Date(now.getTime() - 12000).toISOString(); // active within 12s
+
+      try {
+        const { error: upsertErr } = await supabase
+          .from('site_visits')
+          .upsert(
+            [{ visitor_id: visitorId, visit_date: todayKey, last_seen_at: nowIso }],
+            { onConflict: 'visitor_id,visit_date' }
+          );
+
+        if (upsertErr) {
+          siteVisitsTableAvailable = false;
+          renderTrafficCounts();
+          return;
+        }
+
+        const [{ count: onlineCnt }, { count: todayCnt }] = await Promise.all([
+          supabase
+            .from('site_visits')
+            .select('*', { count: 'exact', head: true })
+            .gte('last_seen_at', activeCutoffIso),
+          supabase
+            .from('site_visits')
+            .select('*', { count: 'exact', head: true })
+            .eq('visit_date', todayKey)
+        ]);
+
+        if (typeof onlineCnt === 'number') dbOnlineCount = Math.max(1, onlineCnt);
+        if (typeof todayCnt === 'number') visitsTodayCount = Math.max(1, todayCnt);
+        renderTrafficCounts();
+      } catch (_) {
+        renderTrafficCounts();
+      }
+    }
+
+    // Run immediately and refresh every 3 seconds
+    syncTrafficHeartbeatAndCounts();
+    setInterval(syncTrafficHeartbeatAndCounts, 3000);
+
+    // ---------------------------------------------------------
+    // 2. CREDITS EARNED CHART (TURBO TUNEZ CORNER LEADERBOARD)
+    // ---------------------------------------------------------
+    async function loadCreditsEarnedChart() {
+      const container = document.getElementById('creditsChartList');
+      try {
+        // Aggregate verified song listens from `listens` + join profile handles
+        const [{ data: listensRows, error: listensErr }, { data: profilesRows }] = await Promise.all([
+          supabase.from('listens').select('user_id, did_like, did_repost, did_follow'),
+          supabase.from('profiles').select('id, username, credits')
+        ]);
+
+        if (listensErr) {
+          container.innerHTML = `<p class="muted">Could not load chart: ${listensErr.message}</p>`;
+          return;
+        }
+
+        const userMap = new Map();
+        (profilesRows || []).forEach((p) => {
+          userMap.set(p.id, { username: p.username, earned: 0, listens: 0 });
+        });
+
+        (listensRows || []).forEach((row) => {
+          if (!row.user_id) return;
+          const entry = userMap.get(row.user_id) || { username: 'Listener', earned: 0, listens: 0 };
+          const rowCredits = 1 + (row.did_like ? 1 : 0) + (row.did_repost ? 1 : 0) + (row.did_follow ? 1 : 0);
+          entry.earned += rowCredits;
+          entry.listens += 1;
+          userMap.set(row.user_id, entry);
+        });
+
+        const ranked = Array.from(userMap.values())
+          .filter((u) => u.earned > 0)
+          .sort((a, b) => b.earned - a.earned)
+          .slice(0, 8);
+
+        if (ranked.length === 0) {
+          container.innerHTML = '<p class="muted" style="font-size:12px;">No listening credits earned yet. Play a track to take #1!</p>';
+          return;
+        }
+
+        const topScore = Math.max(1, ranked[0].earned);
+        container.innerHTML = '';
+
+        ranked.forEach((member, idx) => {
+          const pct = Math.max(12, Math.round((member.earned / topScore) * 100));
+          const item = document.createElement('div');
+          item.className = 'chart-item';
+          item.innerHTML = `
+            <div class="chart-item-head">
+              <span class="chart-rank">#${idx + 1} <strong>@${member.username}</strong></span>
+              <span class="chart-score">+${member.earned} Cr</span>
+            </div>
+            <div class="chart-bar-track">
+              <div class="chart-bar-fill" style="width:${pct}%"></div>
+            </div>
+            <div class="chart-sub">${member.listens} verified song ${member.listens === 1 ? 'play' : 'plays'}</div>
+          `;
+          container.appendChild(item);
+        });
+      } catch (_) {
+        container.innerHTML = '<p class="muted">Unable to load chart right now.</p>';
+      }
+    }
+
+    document.getElementById('refreshChartBtn').onclick = loadCreditsEarnedChart;
+
+    // ---------------------------------------------------------
+    // 3. SITE NAVIGATION & HOMEPAGE INTERACTIONS
+    // ---------------------------------------------------------
+    function isAdminUser() {
+      return Boolean(currentUser && LABEL_ADMIN_HANDLES.includes(currentUser.username.toLowerCase()));
+    }
+
+    function setSiteMode(mode) {
+      const isTunez = mode === 'tunez';
+      document.body.classList.toggle('mode-music', !isTunez);
+      document.body.classList.toggle('mode-tunez', isTunez);
+
+      document.getElementById('yckackBg').classList.toggle('hidden', isTunez);
+      document.getElementById('tunezVideoBg').classList.toggle('hidden', !isTunez);
+
+      document.getElementById('musicHomeView').classList.toggle('hidden', isTunez);
+      document.getElementById('turboTunezView').classList.toggle('hidden', !isTunez);
+
+      document.getElementById('navMusicBtn').classList.toggle('active', !isTunez);
+      document.getElementById('navTunezBtn').classList.toggle('active', isTunez);
+
+      if (isTunez) {
+        loadQueue();
+        loadNeedCreditsTracks();
+        loadCreditsEarnedChart();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('edacBrandLink').onclick = (e) => {
+      e.preventDefault();
+      setSiteMode('music');
+    };
+    document.getElementById('navMusicBtn').onclick = () => setSiteMode('music');
+    document.getElementById('backToMusicBtn').onclick = () => setSiteMode('music');
+    document.getElementById('navTunezBtn').onclick = () => setSiteMode('tunez');
+    document.getElementById('openTunezFromOfferBtn').onclick = () => setSiteMode('tunez');
+
+    document.getElementById('heroStreamScrollBtn').onclick = () => {
+      const panel = document.getElementById('streamPickerPanel');
+      panel.classList.remove('collapsed');
+      document.getElementById('streamSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    document.getElementById('heroBonusScrollBtn').onclick = () => {
+      document.getElementById('bonusOfferSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
+    document.getElementById('streamGifTrigger').onclick = () => {
+      const panel = document.getElementById('streamPickerPanel');
+      const trigger = document.getElementById('streamGifTrigger');
+      const willOpen = panel.classList.contains('collapsed');
+      panel.classList.toggle('collapsed', !willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
+    };
+
+    function getOfferStorageKey(offerKey) {
+      return `${OFFER_CLAIM_PREFIX}${currentUser ? currentUser.id : 'guest'}_${offerKey}`;
+    }
+
+    function syncOfferButtonsUI() {
+      const statusEl = document.getElementById('bonusOfferStatus');
+      document.querySelectorAll('.claim-offer-btn').forEach((btn) => {
+        const offerKey = btn.dataset.offer;
+        const baseCredits = Number(btn.dataset.credits || 0);
+        const alreadyClaimed = Boolean(currentUser && localStorage.getItem(getOfferStorageKey(offerKey)));
+
+        if (!currentUser) {
+          btn.disabled = false;
+          btn.textContent = `Sign In to Claim +${baseCredits}`;
+        } else if (alreadyClaimed) {
+          btn.disabled = true;
+          btn.textContent = `Claimed (+${baseCredits} Cr) ✓`;
+        } else {
+          btn.disabled = false;
+          btn.textContent = `Claim +${baseCredits} Credits`;
+        }
+      });
+
+      if (!currentUser) {
+        statusEl.className = 'muted';
+        statusEl.textContent = 'Sign in to your Turbo Tunez account (on the Turbo Tunez tab) to add +20, +40, or +50 credits directly to your balance.';
+      } else {
+        statusEl.className = 'success-text';
+        statusEl.textContent = `Signed in as @${currentUser.username} · Current balance: ${currentUser.credits} credits.`;
+      }
+    }
+
+    document.querySelectorAll('.claim-offer-btn').forEach((btn) => {
+      btn.onclick = async () => {
+        const statusEl = document.getElementById('bonusOfferStatus');
+        if (!currentUser) {
+          setSiteMode('tunez');
+          document.getElementById('authCard').classList.remove('hidden');
+          document.getElementById('usernameInput').focus();
+          alert('Sign in or create an account first, then claim your +20 / +40 / +50 bonus credits!');
+          return;
+        }
+
+        const offerKey = btn.dataset.offer;
+        const rewardCredits = Number(btn.dataset.credits || 0);
+        if (!rewardCredits || localStorage.getItem(getOfferStorageKey(offerKey))) return;
+
+        btn.disabled = true;
+        btn.textContent = 'Adding credits...';
+
+        await refreshUser();
+        const nextCredits = (currentUser.credits || 0) + rewardCredits;
+        const { data: updated, error } = await supabase
+          .from('profiles')
+          .update({ credits: nextCredits })
+          .eq('id', currentUser.id)
+          .select()
+          .single();
+
+        if (error) {
+          statusEl.className = 'error-text';
+          statusEl.textContent = 'Could not add bonus credits: ' + error.message;
+          btn.disabled = false;
+          btn.textContent = `Claim +${rewardCredits} Credits`;
+          return;
+        }
+
+        currentUser = updated || { ...currentUser, credits: nextCredits };
+        localStorage.setItem(getOfferStorageKey(offerKey), '1');
+        updateAuthUI();
+        syncOfferButtonsUI();
+        statusEl.className = 'success-text';
+        statusEl.textContent = `Boom! +${rewardCredits} Credits added for @${currentUser.username}. New balance: ${currentUser.credits} credits.`;
+      };
+    });
+
+    async function hashPassword(password) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode('tt_salt_' + password);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      return Array.from(new Uint8Array(hashBuffer))
+        .map((b) => b.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    function extractSpotifyTrackId(url) {
+      const match = url.match(/track\/([a-zA-Z0-9]+)/);
+      return match ? match[1] : null;
+    }
+
+    function isValidSoundCloudUrl(url) {
+      return /^https?:\/\/(www\.|m\.)?soundcloud\.com\/[^/]+\/[^/]+/i.test(url.trim());
+    }
+
+    function extractSoundCloudProfileUrl(trackUrl, customProfileUrl) {
+      if (customProfileUrl && /^https?:\/\/(www\.|m\.)?soundcloud\.com\/[^/]+/i.test(customProfileUrl.trim())) {
+        return customProfileUrl.trim();
+      }
+      const match = trackUrl.trim().match(/^(https?:\/\/(?:www\.|m\.)?soundcloud\.com\/[^/?#]+)/i);
+      return match ? match[1] : trackUrl.trim();
+    }
+
+    function formatStatsHtml(track) {
+      const parts = [`▶ ${track.total_plays || 0} plays`];
+      if ((track.platform || 'spotify') === 'soundcloud') {
+        if (track.allow_like || (track.total_likes || 0) > 0) parts.push(`♥ ${track.total_likes || 0} likes`);
+        if (track.allow_repost || (track.total_reposts || 0) > 0) parts.push(`↻ ${track.total_reposts || 0} reposts`);
+        if (track.allow_follow || (track.total_follows || 0) > 0) parts.push(`+ ${track.total_follows || 0} follows`);
+      }
+      return `<div class="stats-strip">${parts.map((p) => `<span class="stat-chip">${p}</span>`).join('')}</div>`;
+    }
+
+    function hasAlreadyClaimedTrackBefore(trackId) {
+      return (userListenCounts.get(trackId) || 0) > 0;
+    }
+
+    function calculateTotalClaimableCredits() {
+      if (!activeTrack) return 1;
+      let total = 1;
+      if ((activeTrack.platform || 'spotify') === 'soundcloud' && !hasAlreadyClaimedTrackBefore(activeTrack.id)) {
+        if (activeTrack.allow_like && scActionState.like) total += 1;
+        if (activeTrack.allow_repost && scActionState.repost) total += 1;
+        if (activeTrack.allow_follow && scActionState.follow) total += 1;
+      }
+      if (activeTrack.is_label_campaign) return total;
+      return Math.min(total, activeTrack.remaining_listens);
+    }
+
+    function updateClaimButtonLabel() {
+      const btn = document.getElementById('claimBtn');
+      const credits = calculateTotalClaimableCredits();
+      btn.textContent = loopTrackEnabled
+        ? `Claim +${credits} & Loop ↻`
+        : `Claim +${credits} ${credits === 1 ? 'Credit' : 'Credits'}`;
+    }
+
+    document.getElementById('loopToggleBtn').onclick = () => {
+      loopTrackEnabled = !loopTrackEnabled;
+      const btn = document.getElementById('loopToggleBtn');
+      btn.textContent = loopTrackEnabled ? '↻ Loop Track: ON' : '↻ Loop Track: OFF';
+      btn.className = loopTrackEnabled ? 'btn-loop-on btn-sm' : 'btn-secondary btn-sm';
+      if (activeTrack && !document.getElementById('claimBtn').disabled) {
+        updateClaimButtonLabel();
+      }
+    };
+
+    function resetActiveSessionUI() {
+      activeTrack = null;
+      loopCountThisSession = 0;
+      secondsListened = 0;
+      isActuallyPlaying = false;
+      lastTickMs = null;
+      creditClaimedForTrack = false;
+      scActionState = { like: false, repost: false, follow: false };
+      scWidgetInstance = null;
+      clearInterval(scPollInterval);
+      scPollInterval = null;
+
+      document.getElementById('timerDisplay').textContent = '0';
+      document.getElementById('claimBtn').disabled = true;
+      document.getElementById('claimBtn').textContent = 'Claim +1 Credit';
+      document.getElementById('cancelSessionBtn').classList.add('hidden');
+      document.getElementById('scBonusBox').classList.add('hidden');
+      document.getElementById('scTasksContainer').innerHTML = '';
+      document.getElementById('playStateBadge').textContent = 'Waiting for playback...';
+      document.getElementById('playStateBadge').className = 'muted';
+      document.getElementById('nowPlayingLabel').innerHTML = 'Pick a track from the <strong>Live Community Queue</strong> or <strong>Need Credits?</strong> below.';
+      document.getElementById('sessionFeedbackMsg').className = 'muted';
+      document.getElementById('sessionFeedbackMsg').innerHTML = 'Turn on <strong>↻ Loop Track</strong> to keep repeating a song and earning <strong>+1 Credit per loop</strong>.';
+    }
+
+    document.querySelectorAll('.roster-chip-btn').forEach((btn) => {
+      btn.onclick = () => {
+        const artistName = btn.dataset.artist;
+        document.getElementById('labelArtistInput').value = artistName;
+        const titleEl = document.getElementById('labelTitleInput');
+        if (!titleEl.value.trim()) titleEl.value = `${artistName} - `;
+        titleEl.focus();
+      };
+    });
+
+    function setPromotePlatform(plat) {
+      promotePlatform = plat;
+      const isSC = plat === 'soundcloud';
+      document.getElementById('platSelectSpotify').className = isSC ? 'btn-secondary btn-sm' : 'btn-sm';
+      document.getElementById('platSelectSoundCloud').className = isSC ? 'btn-sc btn-sm' : 'btn-secondary btn-sm';
+      document.getElementById('trackUrlLabel').textContent = isSC ? 'SoundCloud Track Link' : 'Spotify Track Link';
+      document.getElementById('trackUrlInput').placeholder = isSC
+        ? 'https://soundcloud.com/artist/track-name'
+        : 'https://open.spotify.com/track/...';
+      document.getElementById('scPromoteOptions').classList.toggle('hidden', !isSC);
+      document.getElementById('submitTrackBtn').className = isSC ? 'btn-sc' : '';
+      syncBudgetUI(document.getElementById('budgetInput').value);
+    }
+
+    document.getElementById('platSelectSpotify').onclick = () => setPromotePlatform('spotify');
+    document.getElementById('platSelectSoundCloud').onclick = () => setPromotePlatform('soundcloud');
+
+    function syncBudgetUI(val) {
+      const parsed = Math.max(MIN_CAMPAIGN_BUDGET, Math.floor(Number(val) || MIN_CAMPAIGN_BUDGET));
+      const labelName = promotePlatform === 'soundcloud' ? 'SoundCloud' : 'Spotify';
+      document.getElementById('budgetInput').value = parsed;
+      document.getElementById('targetListensDisplay').textContent = `${parsed} Credits in Pool`;
+      document.getElementById('submitTrackBtn').textContent = `Launch ${labelName} Campaign (${parsed} Credits)`;
+      document.querySelectorAll('.preset-btn[data-budget]').forEach((btn) => {
+        btn.classList.toggle('selected', Number(btn.dataset.budget) === parsed);
+      });
+    }
+
+    document.querySelectorAll('.preset-btn[data-budget]').forEach((btn) => {
+      btn.onclick = () => syncBudgetUI(btn.dataset.budget);
+    });
+
+    document.getElementById('maxBudgetBtn').onclick = () => {
+      const bal = currentUser ? currentUser.credits : MIN_CAMPAIGN_BUDGET;
+      syncBudgetUI(Math.max(MIN_CAMPAIGN_BUDGET, bal));
+    };
+
+    document.getElementById('budgetInput').addEventListener('input', (e) => {
+      const raw = Math.floor(Number(e.target.value) || 0);
+      const displayVal = raw > 0 ? raw : MIN_CAMPAIGN_BUDGET;
+      const labelName = promotePlatform === 'soundcloud' ? 'SoundCloud' : 'Spotify';
+      document.getElementById('targetListensDisplay').textContent = `${displayVal} Credits in Pool`;
+      document.getElementById('submitTrackBtn').textContent = `Launch ${labelName} Campaign (${displayVal} Credits)`;
+    });
+
+    document.getElementById('budgetInput').addEventListener('blur', (e) => syncBudgetUI(e.target.value));
+
+    document.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.onclick = () => {
+        queueFilter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach((b) => {
+          b.className = b.dataset.filter === queueFilter ? 'filter-btn btn-sm' : 'filter-btn btn-secondary btn-sm';
+        });
+        loadQueue();
+      };
+    });
+
+    document.querySelectorAll('.grind-filter-btn').forEach((btn) => {
+      btn.onclick = () => {
+        grindFilter = btn.dataset.gfilter;
+        document.querySelectorAll('.grind-filter-btn').forEach((b) => {
+          b.className = b.dataset.gfilter === grindFilter ? 'grind-filter-btn btn-sm' : 'grind-filter-btn btn-secondary btn-sm';
+        });
+        loadNeedCreditsTracks();
+      };
+    });
+
+    function navigateTTPage(pageName) {
+      ['home', 'needcredits', 'promote', 'mytracks', 'rules'].forEach((p) => {
+        document.getElementById(`tt-page-${p}`).classList.toggle('hidden', p !== pageName);
+      });
+      document.querySelectorAll('.tt-subtab').forEach((btn) => {
+        btn.className = btn.dataset.ttpage === pageName ? 'tt-subtab btn-sm' : 'tt-subtab btn-secondary btn-sm';
+      });
+      const showPlayer = pageName === 'home' || pageName === 'needcredits';
+      document.getElementById('activePlayerCard').classList.toggle('hidden', !showPlayer);
+
+      if (pageName === 'mytracks') loadMyTracks();
+      if (pageName === 'home') loadQueue();
+      if (pageName === 'needcredits') loadNeedCreditsTracks();
+      if (pageName === 'promote') {
+        document.getElementById('promoteBalanceDisplay').textContent = currentUser ? currentUser.credits : '0';
+      }
+    }
+
+    document.querySelectorAll('.tt-subtab').forEach((btn) => {
+      btn.onclick = () => navigateTTPage(btn.dataset.ttpage);
+    });
+
+    function setAuthMode(mode) {
+      authMode = mode;
+      const isSignUp = mode === 'signup';
+      document.getElementById('modeSignInBtn').className = isSignUp ? 'btn-secondary btn-sm' : 'btn-sm';
+      document.getElementById('modeSignUpBtn').className = isSignUp ? 'btn-sm' : 'btn-secondary btn-sm';
+      document.getElementById('authHeading').textContent = isSignUp ? 'Create Free Turbo Tunez Account' : 'Sign In to Turbo Tunez';
+      document.getElementById('authSubtext').textContent = isSignUp
+        ? 'Pick a unique handle and password. New accounts start with 3 free credits.'
+        : 'Enter your artist/listener handle and password.';
+      document.getElementById('authSubmitBtn').textContent = isSignUp ? 'Create Account' : 'Sign In';
+      document.getElementById('userStatus').textContent = '';
+    }
+
+    document.getElementById('modeSignInBtn').onclick = () => setAuthMode('signin');
+    document.getElementById('modeSignUpBtn').onclick = () => setAuthMode('signup');
+
+    function updateAuthUI() {
+      const authCard = document.getElementById('authCard');
+      const headerCredits = document.getElementById('headerCredits');
+      const badge = document.getElementById('headerUserBadge');
+      const promoteBal = document.getElementById('promoteBalanceDisplay');
+      const adminBox = document.getElementById('labelAdminBox');
+
+      if (currentUser) {
+        authCard.classList.add('hidden');
+        headerCredits.textContent = currentUser.credits;
+        badge.textContent = `@${currentUser.username}`;
+        badge.classList.remove('hidden');
+        promoteBal.textContent = currentUser.credits;
+        adminBox.classList.toggle('hidden', !isAdminUser());
+      } else {
+        authCard.classList.remove('hidden');
+        headerCredits.textContent = '0';
+        badge.classList.add('hidden');
+        promoteBal.textContent = '0';
+        adminBox.classList.add('hidden');
+      }
+      syncOfferButtonsUI();
+    }
+
+    async function loadUserListenHistory() {
+      userListenCounts = new Map();
+      if (!currentUser) return;
+      const { data } = await supabase.from('listens').select('track_id').eq('user_id', currentUser.id);
+      if (data) {
+        data.forEach((row) => {
+          userListenCounts.set(row.track_id, (userListenCounts.get(row.track_id) || 0) + 1);
+        });
+      }
+    }
+
+    async function handleAuthSubmit() {
+      const handle = document.getElementById('usernameInput').value.trim();
+      const password = document.getElementById('passwordInput').value;
+      const statusEl = document.getElementById('userStatus');
+
+      if (!handle || password.length < 4) {
+        statusEl.className = 'error-text';
+        statusEl.textContent = 'Enter a handle and a password (at least 4 characters).';
+        return;
+      }
+
+      statusEl.className = 'muted';
+      statusEl.textContent = authMode === 'signup' ? 'Creating account...' : 'Signing in...';
+      const pwHash = await hashPassword(password);
+
+      const { data: existing, error: fetchErr } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('username', handle)
+        .maybeSingle();
+
+      if (fetchErr) {
+        statusEl.className = 'error-text';
+        statusEl.textContent = 'Database error: ' + fetchErr.message;
+        return;
+      }
+
+      if (authMode === 'signup') {
+        if (existing) {
+          statusEl.className = 'error-text';
+          statusEl.textContent = 'That handle is already taken. Switch to Sign In or pick another handle.';
+          return;
+        }
+        const { data: created, error: createErr } = await supabase
+          .from('profiles')
+          .insert([{ username: handle, password_hash: pwHash, credits: 3 }])
+          .select()
+          .single();
+        if (createErr) {
+          statusEl.className = 'error-text';
+          statusEl.textContent = 'Could not create account: ' + createErr.message;
+          return;
+        }
+        currentUser = created;
+      } else {
+        if (!existing) {
+          statusEl.className = 'error-text';
+          statusEl.textContent = 'No account found with that handle. Click "Create Account" above.';
+          return;
+        }
+        if (!existing.password_hash) {
+          const { data: upgraded } = await supabase
+            .from('profiles')
+            .update({ password_hash: pwHash })
+            .eq('id', existing.id)
+            .select()
+            .single();
+          currentUser = upgraded || existing;
+        } else if (existing.password_hash !== pwHash) {
+          statusEl.className = 'error-text';
+          statusEl.textContent = 'Incorrect password.';
+          return;
+        } else {
+          currentUser = existing;
+        }
+      }
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ id: currentUser.id, username: currentUser.username }));
+      document.getElementById('passwordInput').value = '';
+      statusEl.textContent = '';
+      await loadUserListenHistory();
+      updateAuthUI();
+      await loadQueue();
+      await loadNeedCreditsTracks();
+      await loadCreditsEarnedChart();
+    }
+
+    async function refreshUser() {
+      if (!currentUser) return;
+      const { data } = await supabase.from('profiles').select('*').eq('id', currentUser.id).single();
+      if (data) {
+        currentUser = data;
+        updateAuthUI();
+      }
+    }
+
+    function advanceVerifiedPlaybackTick() {
+      if (!activeTrack) return;
+      const badge = document.getElementById('playStateBadge');
+      const now = Date.now();
+      if (!isActuallyPlaying) {
+        isActuallyPlaying = true;
+        lastTickMs = now;
+      } else if (lastTickMs && !document.hidden) {
+        const deltaSec = (now - lastTickMs) / 1000;
+        if (deltaSec > 0 && deltaSec < 2.5) secondsListened += deltaSec;
+        lastTickMs = now;
+      }
+
+      const shownSec = Math.min(LISTEN_GOAL, Math.floor(secondsListened));
+      document.getElementById('timerDisplay').textContent = String(shownSec);
+      badge.textContent = loopCountThisSession > 0 ? `Playing Loop #${loopCountThisSession + 1}...` : 'Playing...';
+      badge.className = 'status-live';
+
+      if (secondsListened >= LISTEN_GOAL && !creditClaimedForTrack && currentUser) {
+        document.getElementById('claimBtn').disabled = false;
+        updateClaimButtonLabel();
+        badge.textContent = loopTrackEnabled ? 'Goal reached! Claim & keep looping' : 'Goal reached! Claim your credits';
+      }
+    }
+
+    window.onSpotifyIframeApiReady = (IFrameAPI) => {
+      spotifyApi = IFrameAPI;
+      if (pendingUri) {
+        mountSpotifyController(pendingUri);
+        pendingUri = null;
+      }
+    };
+
+    function mountSpotifyController(uri) {
+      embedController = null;
+      const container = document.getElementById('embedContainer');
+      container.innerHTML = '<div id="spotifyEmbedTarget"></div>';
+      spotifyApi.createController(document.getElementById('spotifyEmbedTarget'), { uri, width: '100%', height: '152' }, (controller) => {
+        embedController = controller;
+        controller.addListener('playback_update', (e) => {
+          if (!activeTrack || (activeTrack.platform || 'spotify') !== 'spotify') return;
+          if (e.data.isPaused) {
+            isActuallyPlaying = false;
+            lastTickMs = null;
+            const badge = document.getElementById('playStateBadge');
+            badge.textContent = 'Paused — press Play to count';
+            badge.className = 'status-paused';
+          } else {
+            advanceVerifiedPlaybackTick();
+          }
+        });
+      });
+    }
+
+    function mountSoundCloudPlayer(track) {
+      embedController = null;
+      scWidgetInstance = null;
+      clearInterval(scPollInterval);
+      const container = document.getElementById('embedContainer');
+      const encodedUrl = encodeURIComponent(track.spotify_url.trim());
+      container.innerHTML = `
+        <iframe
+          id="scWidgetFrame"
+          width="100%"
+          height="166"
+          scrolling="no"
+          frameborder="no"
+          allow="autoplay"
+          src="https://w.soundcloud.com/player/?url=${encodedUrl}&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
+        </iframe>
+      `;
+
+      const iframeEl = document.getElementById('scWidgetFrame');
+      if (window.SC && window.SC.Widget) {
+        const widget = window.SC.Widget(iframeEl);
+        scWidgetInstance = widget;
+        widget.bind(window.SC.Widget.Events.PLAY, () => {
+          isActuallyPlaying = true;
+          lastTickMs = Date.now();
+        });
+        widget.bind(window.SC.Widget.Events.PAUSE, () => {
+          isActuallyPlaying = false;
+          lastTickMs = null;
+        });
+        widget.bind(window.SC.Widget.Events.FINISH, () => {
+          if (loopTrackEnabled && activeTrack && activeTrack.platform === 'soundcloud') {
+            widget.seekTo(0);
+            widget.play();
+          } else {
+            isActuallyPlaying = false;
+            lastTickMs = null;
+          }
+        });
+        scPollInterval = setInterval(() => {
+          if (!activeTrack || activeTrack.platform !== 'soundcloud') return;
+          widget.isPaused((paused) => {
+            if (!paused) advanceVerifiedPlaybackTick();
+          });
+        }, 500);
+      }
+      renderSoundCloudBonusTasks(track);
+    }
+
+    function restartActivePlayerFromBeginning() {
+      if (!activeTrack) return;
+      const plat = activeTrack.platform || 'spotify';
+      if (plat === 'spotify' && embedController) {
+        try { embedController.restart(); } catch (_) {}
+      } else if (plat === 'soundcloud' && scWidgetInstance) {
+        try { scWidgetInstance.seekTo(0); scWidgetInstance.play(); } catch (_) {}
+      }
+    }
+
+    function renderSoundCloudBonusTasks(track) {
+      const box = document.getElementById('scBonusBox');
+      const container = document.getElementById('scTasksContainer');
+      const hasAnyAction = track.allow_like || track.allow_repost || track.allow_follow;
+      if (!hasAnyAction || hasAlreadyClaimedTrackBefore(track.id)) {
+        box.classList.add('hidden');
+        container.innerHTML = '';
+        return;
+      }
+      box.classList.remove('hidden');
+      container.innerHTML = '';
+      const tasks = [];
+      if (track.allow_like) tasks.push({ key: 'like', label: 'Like Track on SoundCloud (+1 Credit)', url: track.spotify_url });
+      if (track.allow_repost) tasks.push({ key: 'repost', label: 'Repost Track on SoundCloud (+1 Credit)', url: track.spotify_url });
+      if (track.allow_follow) {
+        tasks.push({ key: 'follow', label: `Follow @${track.submitted_by} on SoundCloud (+1 Credit)`, url: extractSoundCloudProfileUrl(track.spotify_url, track.artist_profile_url) });
+      }
+      tasks.forEach((t) => {
+        const row = document.createElement('div');
+        row.className = 'sc-task-row';
+        row.innerHTML = `<span style="font-size:13px; font-weight:600;">${t.label}</span>`;
+        const right = document.createElement('div');
+        right.style.cssText = 'display:flex; align-items:center; gap:8px;';
+        const openLink = document.createElement('a');
+        openLink.href = t.url;
+        openLink.target = '_blank';
+        openLink.rel = 'noopener';
+        openLink.textContent = 'Open on SoundCloud ↗';
+        openLink.style.cssText = 'color:#ff8c52; font-size:12px; font-weight:700;';
+        const cbLabel = document.createElement('label');
+        cbLabel.className = 'check-label';
+        cbLabel.style.cssText = 'padding:4px 8px; font-size:12px;';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.onchange = () => {
+          scActionState[t.key] = cb.checked;
+          updateClaimButtonLabel();
+        };
+        cbLabel.appendChild(cb);
+        cbLabel.appendChild(document.createTextNode('Done'));
+        right.appendChild(openLink);
+        right.appendChild(cbLabel);
+        row.appendChild(right);
+        container.appendChild(row);
+      });
+    }
+
+    async function addCreditsToTrack(track, addCredits) {
+      if (!currentUser) return;
+      const creditsToAdd = Math.floor(Number(addCredits) || 0);
+      if (creditsToAdd < 1) return;
+      await refreshUser();
+      if (currentUser.credits < creditsToAdd) return alert(`You only have ${currentUser.credits} credits.`);
+      await supabase.from('tracks').update({ remaining_listens: track.remaining_listens + creditsToAdd }).eq('id', track.id);
+      await supabase.from('profiles').update({ credits: currentUser.credits - creditsToAdd }).eq('id', currentUser.id);
+      await refreshUser();
+      await loadQueue();
+      if (!document.getElementById('tt-page-mytracks').classList.contains('hidden')) await loadMyTracks();
+    }
+
+    function buildTopUpControls(track) {
+      const wrap = document.createElement('div');
+      wrap.className = 'row-actions';
+      [1, 3].forEach((amt) => {
+        const b = document.createElement('button');
+        b.textContent = `+${amt} Credit${amt > 1 ? 's' : ''}`;
+        b.className = 'btn-secondary btn-sm';
+        b.type = 'button';
+        b.disabled = !currentUser || currentUser.credits < amt;
+        b.onclick = () => addCreditsToTrack(track, amt);
+        wrap.appendChild(b);
+      });
+      return wrap;
+    }
+
+    async function loadQueue() {
+      let query = supabase
+        .from('tracks')
+        .select('*')
+        .eq('is_label_campaign', false)
+        .gt('remaining_listens', 0)
+        .order('remaining_listens', { ascending: false })
+        .order('created_at', { ascending: false });
+      if (queueFilter !== 'all') query = query.eq('platform', queueFilter);
+      const { data, error } = await query;
+      const listEl = document.getElementById('queueList');
+      if (error) return (listEl.textContent = 'Could not load queue: ' + error.message);
+      if (!data || data.length === 0) {
+        listEl.innerHTML = '<p class="muted">No community tracks in this view right now. Check <strong>Need Credits?</strong> or launch your own campaign.</p>';
+        return;
+      }
+      const sessionInProgress = Boolean(activeTrack && !creditClaimedForTrack);
+      listEl.innerHTML = '';
+      data.forEach((track) => {
+        const plat = track.platform || 'spotify';
+        const isOwnTrack = currentUser && track.submitted_by.toLowerCase() === currentUser.username.toLowerCase();
+        const badgeHtml = plat === 'soundcloud'
+          ? '<span class="plat-badge plat-soundcloud">SoundCloud</span>'
+          : '<span class="plat-badge plat-spotify">Spotify</span>';
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `
+          <div>
+            <div>${badgeHtml}<strong>${track.track_title}</strong></div>
+            <div class="muted" style="margin-top:3px;">Queued by @${track.submitted_by} · Budget pool: ${track.remaining_listens} credits</div>
+            ${formatStatsHtml(track)}
+          </div>
+        `;
+        if (isOwnTrack) {
+          row.appendChild(buildTopUpControls(track));
+        } else {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = sessionInProgress ? 'Finish Current Track' : 'Play & Earn (+1)';
+          btn.disabled = sessionInProgress;
+          if (plat === 'soundcloud') btn.className = 'btn-sc';
+          btn.onclick = () => startTrackSession(track);
+          row.appendChild(btn);
+        }
+        listEl.appendChild(row);
+      });
+    }
+
+    async function loadNeedCreditsTracks() {
+      let query = supabase.from('tracks').select('*').eq('is_label_campaign', true).order('created_at', { ascending: false });
+      if (grindFilter !== 'all') query = query.eq('platform', grindFilter);
+      const { data, error } = await query;
+      const listEl = document.getElementById('needCreditsList');
+      if (error) return (listEl.textContent = 'Could not load label tracks: ' + error.message);
+      if (!data || data.length === 0) {
+        listEl.innerHTML = '<p class="muted">No label tracks in pool yet.</p>';
+        return;
+      }
+      const sessionInProgress = Boolean(activeTrack && !creditClaimedForTrack);
+      listEl.innerHTML = '';
+      data.forEach((track) => {
+        const plat = track.platform || 'spotify';
+        const badgeHtml = plat === 'soundcloud'
+          ? '<span class="plat-badge plat-soundcloud">SoundCloud</span>'
+          : '<span class="plat-badge plat-spotify">Spotify</span>';
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `
+          <div>
+            <div>${badgeHtml}<span class="plat-badge plat-label">Label Grind</span><strong>${track.track_title}</strong></div>
+            <div class="muted" style="margin-top:3px;">Artist: @${track.submitted_by} · Unlimited Grind Pool</div>
+            ${formatStatsHtml(track)}
+          </div>
+        `;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = sessionInProgress ? 'Finish Current Track' : 'Grind +1 Credit';
+        btn.disabled = sessionInProgress;
+        if (plat === 'soundcloud') btn.className = 'btn-sc';
+        btn.onclick = () => startTrackSession(track);
+        row.appendChild(btn);
+        listEl.appendChild(row);
+      });
+    }
+
+    async function loadMyTracks() {
+      const box = document.getElementById('myTracksList');
+      if (!currentUser) return (box.textContent = 'Sign in at the top to see your promoted campaigns and stats.');
+      const { data } = await supabase.from('tracks').select('*').eq('submitted_by', currentUser.username).eq('is_label_campaign', false).order('created_at', { ascending: false });
+      if (!data || data.length === 0) {
+        box.innerHTML = '<p class="muted">No campaigns launched yet.</p>';
+        return;
+      }
+      box.innerHTML = '';
+      data.forEach((t) => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `
+          <div>
+            <strong>${t.track_title}</strong>
+            <div class="muted">${t.remaining_listens} credits left in pool</div>
+            ${formatStatsHtml(t)}
+          </div>
+        `;
+        row.appendChild(buildTopUpControls(t));
+        box.appendChild(row);
+      });
+    }
+
+    function startTrackSession(track) {
+      if (activeTrack && !creditClaimedForTrack) return;
+      if (!currentUser) {
+        document.getElementById('authCard').classList.remove('hidden');
+        document.getElementById('usernameInput').focus();
+        alert('Sign in or create a free account first so your credits can be saved!');
+        return;
+      }
+      const plat = track.platform || 'spotify';
+      activeTrack = track;
+      loopCountThisSession = 0;
+      secondsListened = 0;
+      isActuallyPlaying = false;
+      lastTickMs = null;
+      creditClaimedForTrack = false;
+      scActionState = { like: false, repost: false, follow: false };
+      document.getElementById('scBonusBox').classList.add('hidden');
+      document.getElementById('timerDisplay').textContent = '0';
+      document.getElementById('claimBtn').disabled = true;
+      document.getElementById('claimBtn').textContent = 'Claim +1 Credit';
+      document.getElementById('cancelSessionBtn').classList.remove('hidden');
+      document.getElementById('playStateBadge').textContent = `Press Play inside ${plat === 'soundcloud' ? 'SoundCloud' : 'Spotify'} player`;
+      document.getElementById('playStateBadge').className = 'status-paused';
+      document.getElementById('nowPlayingLabel').textContent = `Loaded ${track.track_title} (by @${track.submitted_by})`;
+
+      if (plat === 'spotify') {
+        const trackId = extractSpotifyTrackId(track.spotify_url);
+        if (!trackId) return alert('Invalid Spotify track URL.');
+        const uri = `spotify:track:${trackId}`;
+        if (embedController) embedController.loadUri(uri);
+        else if (spotifyApi) mountSpotifyController(uri);
+        else pendingUri = uri;
+      } else {
+        if (!isValidSoundCloudUrl(track.spotify_url)) return alert('Invalid SoundCloud track URL.');
+        mountSoundCloudPlayer(track);
+      }
+      loadQueue();
+      loadNeedCreditsTracks();
+    }
+
+    document.getElementById('cancelSessionBtn').onclick = () => {
+      if (embedController) {
+        try { embedController.pause(); } catch (_) {}
+      }
+      document.getElementById('embedContainer').innerHTML = '';
+      resetActiveSessionUI();
+      loadQueue();
+      loadNeedCreditsTracks();
+    };
+
+    document.getElementById('authSubmitBtn').onclick = handleAuthSubmit;
+    document.getElementById('passwordInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleAuthSubmit();
+    });
+    document.getElementById('refreshQueueBtn').onclick = loadQueue;
+
+    document.getElementById('addLabelTrackBtn').onclick = async () => {
+      const msgEl = document.getElementById('labelAdminMsg');
+      if (!isAdminUser()) return;
+      const plat = document.getElementById('labelPlatSelect').value;
+      const artist = document.getElementById('labelArtistInput').value.trim() || currentUser.username;
+      const title = document.getElementById('labelTitleInput').value.trim();
+      const url = document.getElementById('labelUrlInput').value.trim();
+      if (!title) return (msgEl.textContent = 'Enter a track title.');
+      const isSC = plat === 'soundcloud';
+      const { error } = await supabase.from('tracks').insert([{
+        submitted_by: artist,
+        platform: plat,
+        spotify_url: url,
+        track_title: title,
+        remaining_listens: 999999,
+        is_label_campaign: true,
+        allow_like: isSC,
+        allow_repost: isSC,
+        allow_follow: isSC,
+        artist_profile_url: isSC ? extractSoundCloudProfileUrl(url, '') : null,
+        total_plays: 0,
+        total_likes: 0,
+        total_reposts: 0,
+        total_follows: 0
+      }]);
+      if (error) return (msgEl.textContent = 'Error: ' + error.message);
+      document.getElementById('labelTitleInput').value = '';
+      document.getElementById('labelUrlInput').value = '';
+      msgEl.className = 'success-text';
+      msgEl.textContent = `Added "${title}" to Need Credits?`;
+      await loadNeedCreditsTracks();
+    };
+
+    document.getElementById('claimBtn').onclick = async () => {
+      if (!currentUser || !activeTrack || creditClaimedForTrack || secondsListened < LISTEN_GOAL) return;
+      const finishedTrack = activeTrack;
+      const { data: latestTrack } = await supabase.from('tracks').select('*').eq('id', finishedTrack.id).single();
+      if (!latestTrack || (!latestTrack.is_label_campaign && latestTrack.remaining_listens <= 0)) {
+        document.getElementById('embedContainer').innerHTML = '';
+        resetActiveSessionUI();
+        return loadQueue();
+      }
+      activeTrack = latestTrack;
+      const earnedCredits = calculateTotalClaimableCredits();
+      const firstPass = !hasAlreadyClaimedTrackBefore(latestTrack.id);
+      const didLike = Boolean(firstPass && latestTrack.allow_like && scActionState.like);
+      const didRepost = Boolean(firstPass && latestTrack.allow_repost && scActionState.repost);
+      const didFollow = Boolean(firstPass && latestTrack.allow_follow && scActionState.follow);
+
+      creditClaimedForTrack = true;
+      document.getElementById('claimBtn').disabled = true;
+
+      await supabase.from('listens').insert([{
+        user_id: currentUser.id,
+        track_id: latestTrack.id,
+        did_like: didLike,
+        did_repost: didRepost,
+        did_follow: didFollow
+      }]);
+
+      userListenCounts.set(latestTrack.id, (userListenCounts.get(latestTrack.id) || 0) + 1);
+      await supabase.from('profiles').update({ credits: currentUser.credits + earnedCredits }).eq('id', currentUser.id);
+
+      const nextBudget = latestTrack.is_label_campaign ? 999999 : Math.max(0, latestTrack.remaining_listens - earnedCredits);
+      await supabase.from('tracks').update({
+        remaining_listens: nextBudget,
+        total_plays: (latestTrack.total_plays || 0) + 1,
+        total_likes: (latestTrack.total_likes || 0) + (didLike ? 1 : 0),
+        total_reposts: (latestTrack.total_reposts || 0) + (didRepost ? 1 : 0),
+        total_follows: (latestTrack.total_follows || 0) + (didFollow ? 1 : 0)
+      }).eq('id', latestTrack.id);
+
+      await refreshUser();
+      await loadCreditsEarnedChart();
+
+      if (loopTrackEnabled && (latestTrack.is_label_campaign || nextBudget > 0)) {
+        loopCountThisSession += 1;
+        secondsListened = 0;
+        creditClaimedForTrack = false;
+        scActionState = { like: false, repost: false, follow: false };
+        document.getElementById('scBonusBox').classList.add('hidden');
+        document.getElementById('timerDisplay').textContent = '0';
+        document.getElementById('claimBtn').disabled = true;
+        document.getElementById('claimBtn').textContent = 'Claim +1 Credit';
+        document.getElementById('sessionFeedbackMsg').className = 'success-text';
+        document.getElementById('sessionFeedbackMsg').textContent = `+${earnedCredits} Credit claimed! Loop #${loopCountThisSession + 1} started.`;
+        restartActivePlayerFromBeginning();
+        return;
+      }
+
+      document.getElementById('embedContainer').innerHTML = '';
+      resetActiveSessionUI();
+      await loadQueue();
+      await loadNeedCreditsTracks();
+      alert(`+${earnedCredits} ${earnedCredits === 1 ? 'Credit' : 'Credits'} claimed!`);
+    };
+
+    document.getElementById('submitTrackBtn').onclick = async () => {
+      const msgEl = document.getElementById('submitMsg');
+      if (!currentUser) return (msgEl.textContent = 'Sign in first.');
+      const budget = Math.floor(Number(document.getElementById('budgetInput').value) || 0);
+      if (budget < MIN_CAMPAIGN_BUDGET) return (msgEl.textContent = `Minimum budget is ${MIN_CAMPAIGN_BUDGET} credits.`);
+      await refreshUser();
+      if (currentUser.credits < budget) return (msgEl.textContent = 'Not enough credits.');
+      const title = document.getElementById('trackTitleInput').value.trim();
+      const url = document.getElementById('trackUrlInput').value.trim();
+      if (!title || !url) return (msgEl.textContent = 'Enter a track title and link.');
+      const isSC = promotePlatform === 'soundcloud';
+      const { error } = await supabase.from('tracks').insert([{
+        submitted_by: currentUser.username,
+        platform: promotePlatform,
+        spotify_url: url,
+        track_title: title,
+        remaining_listens: budget,
+        is_label_campaign: false,
+        allow_like: isSC ? document.getElementById('optAllowLike').checked : false,
+        allow_repost: isSC ? document.getElementById('optAllowRepost').checked : false,
+        allow_follow: isSC ? document.getElementById('optAllowFollow').checked : false,
+        artist_profile_url: isSC ? extractSoundCloudProfileUrl(url, document.getElementById('artistProfileUrlInput').value) : null,
+        total_plays: 0,
+        total_likes: 0,
+        total_reposts: 0,
+        total_follows: 0
+      }]);
+      if (error) return (msgEl.textContent = 'Error: ' + error.message);
+      await supabase.from('profiles').update({ credits: currentUser.credits - budget }).eq('id', currentUser.id);
+      await refreshUser();
+      await loadQueue();
+      document.getElementById('trackTitleInput').value = '';
+      document.getElementById('trackUrlInput').value = '';
+      msgEl.className = 'success-text';
+      msgEl.textContent = `Campaign live with ${budget} credits!`;
+    };
+
+    (async () => {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        try {
+          const saved = JSON.parse(raw);
+          const { data } = await supabase.from('profiles').select('*').eq('id', saved.id).maybeSingle();
+          if (data) {
+            currentUser = data;
+            await loadUserListenHistory();
+          }
+        } catch (_) {}
+      }
+      updateAuthUI();
+      await loadQueue();
+      await loadNeedCreditsTracks();
+      await loadCreditsEarnedChart();
+    })();
+  </script>
+</body>
+</html>

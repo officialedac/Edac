@@ -111,6 +111,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 .nav-tab {
@@ -337,6 +338,62 @@ h1 {
 .sp-link:hover { border-color: #1db954; background: rgba(29, 185, 84, 0.2); }
 .am-link:hover { border-color: #f43f5e; background: rgba(244, 63, 94, 0.2); }
 
+/* Riverside CA ARG Bonus Track Section */
+.arg-section {
+  margin-top: 22px;
+  margin-bottom: 22px;
+  padding: 22px;
+  border-radius: 16px;
+  background: rgba(9, 15, 25, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(56, 189, 248, 0.36);
+}
+
+.arg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.arg-spot {
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(16, 23, 36, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: border-color 0.16s ease;
+}
+
+.arg-spot:hover {
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.arg-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.arg-controls input {
+  flex: 1 1 115px;
+  min-width: 100px;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.arg-unlocked-box {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(29, 185, 84, 0.15);
+  border: 1px solid rgba(29, 185, 84, 0.48);
+  font-size: 13px;
+}
+
 /* Generous +20 / +40 / +50 Credit Bonus Card */
 .bonus-card {
   background: rgba(9, 15, 25, 0.88);
@@ -480,6 +537,44 @@ h1 {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+/* Account Modal */
+.account-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 13, 0.78);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 999;
+}
+
+.account-modal-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 22px;
+  border-radius: 16px;
+  background: rgba(14, 19, 30, 0.96);
+  color: #f4f7fb;
+  border: 1px solid rgba(56, 189, 248, 0.36);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+}
+
+.account-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.account-stat-box {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Turbo Tunez Corner Split Layout */
@@ -730,6 +825,13 @@ button:disabled { opacity: 0.35; cursor: not-allowed; }
 .row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.07); flex-wrap: wrap; }
 .row:last-child { border-bottom: none; }
 .row-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.row-actions input[type="number"] {
+  width: 78px;
+  margin-right: 0;
+  margin-bottom: 0;
+  padding: 5px 8px;
+  font-size: 12px;
+}
 .muted { color: #b0b0c4; font-size: 13px; }
 .status-live { color: #6ef29b; font-weight: 600; }
 .status-paused { color: #f5b942; font-weight: 600; }

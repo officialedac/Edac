@@ -103,7 +103,7 @@
         <div>
           <span class="bonus-pill">RIVERSIDE, CA · STREET ARG</span>
           <h2 style="margin:6px 0 4px;">Walk Riverside &amp; Unlock Bonus Tracks</h2>
-          <p class="muted" style="margin:0;">Get right up to the coordinates in Riverside—or enter the spot code—to unlock <strong>WHY CAP (PROD. EDAC) [BONUS TRACK]</strong>.</p>
+          <p class="muted" style="margin:0;">Pull up close to the coordinates in Riverside to unlock <strong>WHY CAP (PROD. EDAC) [BONUS TRACK]</strong>.</p>
         </div>
       </div>
       <div id="riversideArgGrid" class="arg-grid"></div>
@@ -469,7 +469,6 @@
         lat: 33.9045,
         lng: -117.44127778,
         radiusMeters: 35,
-        passcode: 'HARR1',
         privateLink: BONUS_TRACK_URL
       },
       {
@@ -480,7 +479,6 @@
         lat: 33.90622222,
         lng: -117.43927778,
         radiusMeters: 35,
-        passcode: 'LOYL2',
         privateLink: BONUS_TRACK_URL
       },
       {
@@ -491,7 +489,6 @@
         lat: 33.9085,
         lng: -117.43669444,
         radiusMeters: 35,
-        passcode: 'GUTT3',
         privateLink: BONUS_TRACK_URL
       }
     ];
@@ -538,6 +535,7 @@
 
     function renderRiversideArgSpots() {
       const grid = document.getElementById('riversideArgGrid');
+      const statusEl = document.getElementById('riversideArgStatus');
       if (!grid) return;
       grid.innerHTML = '';
 
@@ -565,72 +563,46 @@
           const controls = document.createElement('div');
           controls.className = 'arg-controls';
 
-          const codeInput = document.createElement('input');
-          codeInput.type = 'text';
-          codeInput.placeholder = `Code (${spot.passcode})`;
-          codeInput.style.cssText = 'flex:1 1 110px; min-width:100px; margin-bottom:0;';
-
-          const codeBtn = document.createElement('button');
-          codeBtn.type = 'button';
-          codeBtn.className = 'btn-secondary btn-sm';
-          codeBtn.textContent = 'Redeem Code';
-
           const gpsBtn = document.createElement('button');
           gpsBtn.type = 'button';
           gpsBtn.className = 'btn-sm';
-          gpsBtn.textContent = `Check GPS (${spot.radiusMeters}m)`;
-
-          const statusEl = document.getElementById('riversideArgStatus');
-
-          codeBtn.onclick = () => {
-            const entered = codeInput.value.trim().toUpperCase();
-            if (!entered) {
-              statusEl.className = 'error-text';
-              statusEl.textContent = `Enter a code for ${spot.spotName}.`;
-              return;
-            }
-            if (entered === spot.passcode.toUpperCase()) {
-              markSpotUnlocked(spot.id);
-              statusEl.className = 'success-text';
-              statusEl.textContent = `Code accepted! Unlocked ${spot.trackTitle} at ${spot.spotName}.`;
-            } else {
-              statusEl.className = 'error-text';
-              statusEl.textContent = `Invalid code for ${spot.spotName}.`;
-            }
-          };
+          gpsBtn.style.width = '100%';
+          gpsBtn.textContent = `Check Proximity & Redeem (${spot.radiusMeters}m)`;
 
           gpsBtn.onclick = () => {
             if (!navigator.geolocation) {
               statusEl.className = 'error-text';
-              statusEl.textContent = 'Geolocation is not supported on this browser—use the spot code instead.';
+              statusEl.textContent = 'Geolocation is not supported on this browser.';
               return;
             }
+            gpsBtn.disabled = true;
             statusEl.className = 'muted';
-            statusEl.textContent = `Checking if you’re right at ${spot.spotName} (within ${spot.radiusMeters}m)...`;
+            statusEl.textContent = `Checking if you’re within ${spot.radiusMeters}m of ${spot.spotName}...`;
+
             navigator.geolocation.getCurrentPosition(
               (pos) => {
+                gpsBtn.disabled = false;
                 const dist = Math.round(
                   distanceMeters(pos.coords.latitude, pos.coords.longitude, spot.lat, spot.lng)
                 );
                 if (dist <= spot.radiusMeters) {
                   markSpotUnlocked(spot.id);
                   statusEl.className = 'success-text';
-                  statusEl.textContent = `Confirmed ${dist}m from ${spot.spotName}! Unlocked ${spot.trackTitle}.`;
+                  statusEl.textContent = `Confirmed ${dist}m from ${spot.spotName}! Redeemed ${spot.trackTitle}.`;
                 } else {
                   statusEl.className = 'error-text';
-                  statusEl.textContent = `You’re ${dist}m away from ${spot.spotName}—get within ${spot.radiusMeters}m of the spot or enter the code.`;
+                  statusEl.textContent = `You’re ${dist}m away from ${spot.spotName}—get within ${spot.radiusMeters}m to redeem.`;
                 }
               },
               () => {
+                gpsBtn.disabled = false;
                 statusEl.className = 'error-text';
-                statusEl.textContent = 'Location permission denied or unavailable—enter a code or try again.';
+                statusEl.textContent = 'Location permission denied or unavailable—enable location to check proximity.';
               },
               { enableHighAccuracy: true, timeout: 10000 }
             );
           };
 
-          controls.appendChild(codeInput);
-          controls.appendChild(codeBtn);
           controls.appendChild(gpsBtn);
           card.appendChild(controls);
         }

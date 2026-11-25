@@ -5,19 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EDAC — You Can’t Kill A Cold Killa</title>
   <link rel="stylesheet" href="./style.css" />
-  <style>
-    .hidden { display: none !important; }
-    .arg-section { margin-top: 28px; padding: 20px; border-radius: 14px; background: rgba(14, 18, 28, 0.82); border: 1px solid rgba(255,255,255,0.12); }
-    .arg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
-    .arg-spot { padding: 14px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
-    .arg-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-    .arg-unlocked-box { margin-top: 10px; padding: 10px; border-radius: 8px; background: rgba(110, 242, 155, 0.12); border: 1px solid rgba(110, 242, 155, 0.35); font-size: 13px; }
-    .account-modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.72); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 999; }
-    .account-modal-card { width: 100%; max-width: 460px; padding: 22px; border-radius: 14px; background: #121622; color: #f5f7ff; border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-    .account-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; }
-    .account-stat-box { padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); }
-    .row-between { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  </style>
 </head>
 <body class="mode-music">
   <!-- Music Homepage Background GIF -->
@@ -116,7 +103,7 @@
         <div>
           <span class="bonus-pill">RIVERSIDE, CA · STREET ARG</span>
           <h2 style="margin:6px 0 4px;">Walk Riverside &amp; Unlock Bonus Tracks</h2>
-          <p class="muted" style="margin:0;">Pull up to the spot in Riverside and verify location—or type the code from the sticker/flyer—to reveal a private track link.</p>
+          <p class="muted" style="margin:0;">Get right up to the coordinates in Riverside—or enter the spot code—to unlock <strong>WHY CAP (PROD. EDAC) [BONUS TRACK]</strong>.</p>
         </div>
       </div>
       <div id="riversideArgGrid" class="arg-grid"></div>
@@ -467,54 +454,45 @@
     const VISITOR_KEY = 'edac_live_visitor_id_v1';
     const OFFER_CLAIM_PREFIX = 'yckack_offer_claimed_';
     const ARG_UNLOCK_PREFIX = 'yckack_riverside_arg_';
+    const BONUS_TRACK_URL = 'https://soundcloud.com/user-958382692/why-cap-prod-edac-bonus-track';
+    const BONUS_TRACK_TITLE = 'WHY CAP (PROD. EDAC) — BONUS TRACK';
     const LISTEN_GOAL = 28;
     const MIN_CAMPAIGN_BUDGET = 3;
     const LABEL_ADMIN_HANDLES = ['edac', 'cadesawmassacre', 'cadeloeffler'];
 
     const RIVERSIDE_ARG_SPOTS = [
       {
-        id: 'mt_rubidoux',
-        trackTitle: 'Bonus Track 01 — Summit Cold',
-        spotName: 'Mount Rubidoux Summit',
-        hint: 'Near the cross / summit trail marker in Riverside',
-        lat: 33.9936,
-        lng: -117.4053,
-        radiusMeters: 250,
-        passcode: 'RUBI1',
-        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+        id: 'harrison_park',
+        trackTitle: BONUS_TRACK_TITLE,
+        spotName: 'Harrison Park',
+        hint: '33°54\'16.2"N 117°26\'28.6"W · Riverside, CA',
+        lat: 33.9045,
+        lng: -117.44127778,
+        radiusMeters: 35,
+        passcode: 'HARR1',
+        privateLink: BONUS_TRACK_URL
       },
       {
-        id: 'victoria_ave',
-        trackTitle: 'Bonus Track 02 — Palm Boulevard',
-        spotName: 'Victoria Avenue Median',
-        hint: 'Along Victoria Ave in Riverside',
-        lat: 33.9372,
-        lng: -117.3924,
-        radiusMeters: 250,
-        passcode: 'VICT2',
-        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+        id: 'loyola_lincoln',
+        trackTitle: BONUS_TRACK_TITLE,
+        spotName: 'Loyola & Lincoln',
+        hint: '33°54\'22.4"N 117°26\'21.4"W · Loyola & Lincoln Sts',
+        lat: 33.90622222,
+        lng: -117.43927778,
+        radiusMeters: 35,
+        passcode: 'LOYL2',
+        privateLink: BONUS_TRACK_URL
       },
       {
-        id: 'downtown_mall',
-        trackTitle: 'Bonus Track 03 — Main Street Ghost',
-        spotName: 'Downtown Riverside / Mission Inn',
-        hint: 'Around Main St & 7th St in Downtown Riverside',
-        lat: 33.9834,
-        lng: -117.3752,
-        radiusMeters: 250,
-        passcode: 'MAIN3',
-        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
-      },
-      {
-        id: 'fairmount_park',
-        trackTitle: 'Bonus Track 04 — Lake Evans Drift',
-        spotName: 'Fairmount Park',
-        hint: 'Near Lake Evans in Riverside',
-        lat: 33.9994,
-        lng: -117.3865,
-        radiusMeters: 250,
-        passcode: 'LAKE4',
-        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+        id: 'hidden_hip_hop',
+        trackTitle: BONUS_TRACK_TITLE,
+        spotName: 'Hidden Hip-Hop',
+        hint: '33°54\'30.6"N 117°26\'12.1"W · Hidden Hip-Hop craving in the concrete by the gutter',
+        lat: 33.9085,
+        lng: -117.43669444,
+        radiusMeters: 35,
+        passcode: 'GUTT3',
+        privateLink: BONUS_TRACK_URL
       }
     ];
 
@@ -568,8 +546,11 @@
         const card = document.createElement('div');
         card.className = 'arg-spot';
         card.innerHTML = `
-          <div><strong>${spot.trackTitle}</strong></div>
-          <div class="muted" style="font-size:12px; margin-top:4px;">${spot.spotName} — ${spot.hint}</div>
+          <div>
+            <div><strong>${spot.spotName}</strong></div>
+            <div class="muted" style="font-size:12px; margin-top:4px;">${spot.hint}</div>
+            <div class="muted" style="font-size:12px; margin-top:4px;">Unlocks: <strong>${spot.trackTitle}</strong></div>
+          </div>
         `;
 
         if (unlocked) {
@@ -577,7 +558,7 @@
           box.className = 'arg-unlocked-box';
           box.innerHTML = `
             <div><strong>Unlocked ✓</strong></div>
-            <a href="${spot.privateLink}" target="_blank" rel="noopener noreferrer" style="color:#6ef29b; font-weight:700;">Open Private Bonus Link ↗</a>
+            <a href="${spot.privateLink}" target="_blank" rel="noopener noreferrer" style="color:#6ef29b; font-weight:700;">Listen to Bonus Track on SoundCloud ↗</a>
           `;
           card.appendChild(box);
         } else {
@@ -586,7 +567,7 @@
 
           const codeInput = document.createElement('input');
           codeInput.type = 'text';
-          codeInput.placeholder = 'Code (e.g. RUBI1)';
+          codeInput.placeholder = `Code (${spot.passcode})`;
           codeInput.style.cssText = 'flex:1 1 110px; min-width:100px; margin-bottom:0;';
 
           const codeBtn = document.createElement('button');
@@ -597,7 +578,7 @@
           const gpsBtn = document.createElement('button');
           gpsBtn.type = 'button';
           gpsBtn.className = 'btn-sm';
-          gpsBtn.textContent = 'Check GPS';
+          gpsBtn.textContent = `Check GPS (${spot.radiusMeters}m)`;
 
           const statusEl = document.getElementById('riversideArgStatus');
 
@@ -611,7 +592,7 @@
             if (entered === spot.passcode.toUpperCase()) {
               markSpotUnlocked(spot.id);
               statusEl.className = 'success-text';
-              statusEl.textContent = `Code accepted! Unlocked ${spot.trackTitle} (${spot.spotName}).`;
+              statusEl.textContent = `Code accepted! Unlocked ${spot.trackTitle} at ${spot.spotName}.`;
             } else {
               statusEl.className = 'error-text';
               statusEl.textContent = `Invalid code for ${spot.spotName}.`;
@@ -621,11 +602,11 @@
           gpsBtn.onclick = () => {
             if (!navigator.geolocation) {
               statusEl.className = 'error-text';
-              statusEl.textContent = 'Geolocation is not supported on this browser—use the passcode box instead.';
+              statusEl.textContent = 'Geolocation is not supported on this browser—use the spot code instead.';
               return;
             }
             statusEl.className = 'muted';
-            statusEl.textContent = `Checking your Riverside GPS near ${spot.spotName}...`;
+            statusEl.textContent = `Checking if you’re right at ${spot.spotName} (within ${spot.radiusMeters}m)...`;
             navigator.geolocation.getCurrentPosition(
               (pos) => {
                 const dist = Math.round(
@@ -634,10 +615,10 @@
                 if (dist <= spot.radiusMeters) {
                   markSpotUnlocked(spot.id);
                   statusEl.className = 'success-text';
-                  statusEl.textContent = `You’re within ${dist}m of ${spot.spotName}! Unlocked ${spot.trackTitle}.`;
+                  statusEl.textContent = `Confirmed ${dist}m from ${spot.spotName}! Unlocked ${spot.trackTitle}.`;
                 } else {
                   statusEl.className = 'error-text';
-                  statusEl.textContent = `You are ~${dist}m away from ${spot.spotName} (need within ${spot.radiusMeters}m), or enter the spot code.`;
+                  statusEl.textContent = `You’re ${dist}m away from ${spot.spotName}—get within ${spot.radiusMeters}m of the spot or enter the code.`;
                 }
               },
               () => {
@@ -1512,7 +1493,6 @@
     function buildTopUpControls(track) {
       const wrap = document.createElement('div');
       wrap.className = 'row-actions';
-      wrap.style.cssText = 'display:flex; align-items:center; gap:6px; flex-wrap:wrap;';
 
       [1, 3].forEach((amt) => {
         const b = document.createElement('button');
@@ -1530,7 +1510,6 @@
       customInput.step = '1';
       customInput.placeholder = 'Custom';
       customInput.ariaLabel = 'Custom credit amount';
-      customInput.style.cssText = 'width:78px; margin-bottom:0; padding:5px 8px; font-size:12px;';
       customInput.disabled = !currentUser || currentUser.credits < 1;
 
       const customBtn = document.createElement('button');

@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EDAC — You Can’t Kill A Cold Killa</title>
   <link rel="stylesheet" href="./style.css" />
+  <style>
+    .hidden { display: none !important; }
+    .arg-section { margin-top: 28px; padding: 20px; border-radius: 14px; background: rgba(14, 18, 28, 0.82); border: 1px solid rgba(255,255,255,0.12); }
+    .arg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 16px; }
+    .arg-spot { padding: 14px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+    .arg-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .arg-unlocked-box { margin-top: 10px; padding: 10px; border-radius: 8px; background: rgba(110, 242, 155, 0.12); border: 1px solid rgba(110, 242, 155, 0.35); font-size: 13px; }
+    .account-modal-backdrop { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.72); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 999; }
+    .account-modal-card { width: 100%; max-width: 460px; padding: 22px; border-radius: 14px; background: #121622; color: #f5f7ff; border: 1px solid rgba(255,255,255,0.16); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .account-stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; }
+    .account-stat-box { padding: 12px; border-radius: 10px; background: rgba(255,255,255,0.05); }
+    .row-between { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  </style>
 </head>
 <body class="mode-music">
   <!-- Music Homepage Background GIF -->
@@ -27,6 +40,7 @@
       <nav class="main-nav">
         <button id="navMusicBtn" class="nav-tab active" type="button">Music Hub</button>
         <button id="navTunezBtn" class="nav-tab promo-tab" type="button">Turbo Tunez ⚡</button>
+        <button id="navAccountBtn" class="nav-tab" type="button">Account</button>
       </nav>
 
       <div class="wallet-pill">
@@ -47,6 +61,7 @@
         <a href="https://elasticstage.com/soundcloud/releases/edac-you-cant-kill-a-cold-killa-album" target="_blank" rel="noopener noreferrer" class="btn-ice">Buy Vinyl / Release Here</a>
         <button type="button" id="heroStreamScrollBtn" class="btn-ghost">Pick Streaming Platform</button>
         <button type="button" id="heroBonusScrollBtn" class="btn-bonus">Claim Up to +110 Bonus Credits</button>
+        <button type="button" id="heroArgScrollBtn" class="btn-ghost">Riverside Bonus Tracks</button>
       </div>
     </section>
 
@@ -93,6 +108,19 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Riverside CA ARG Bonus Tracks -->
+    <section id="riversideArgSection" class="arg-section">
+      <div class="row-between">
+        <div>
+          <span class="bonus-pill">RIVERSIDE, CA · STREET ARG</span>
+          <h2 style="margin:6px 0 4px;">Walk Riverside &amp; Unlock Bonus Tracks</h2>
+          <p class="muted" style="margin:0;">Pull up to the spot in Riverside and verify location—or type the code from the sticker/flyer—to reveal a private track link.</p>
+        </div>
+      </div>
+      <div id="riversideArgGrid" class="arg-grid"></div>
+      <p id="riversideArgStatus" class="muted" style="margin:12px 0 0;"></p>
     </section>
 
     <!-- Generous Bonus Credit Offer Card -->
@@ -148,7 +176,7 @@
       </div>
 
       <div class="bonus-footer">
-        <p id="bonusOfferStatus" class="muted">Sign in to your Turbo Tunez account (on the Turbo Tunez tab) to credit your balance directly in Supabase.</p>
+        <p id="bonusOfferStatus" class="muted">Sign in to your Turbo Tunez account (on the Turbo Tunez or Account tab) to credit your balance directly in Supabase.</p>
         <button type="button" id="openTunezFromOfferBtn" class="btn-ice btn-sm">Go to Turbo Tunez Exchange →</button>
       </div>
     </section>
@@ -174,7 +202,7 @@
       </div>
       <h2 id="authHeading">Sign In to Turbo Tunez</h2>
       <p id="authSubtext" class="muted" style="margin-top:0;">Enter your artist/listener handle and password.</p>
-      <div style="display:flex; flex-wrap:wrap; align-items:center;">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
         <input id="usernameInput" placeholder="Handle (e.g. Edac)" style="min-width:210px;" />
         <input id="passwordInput" type="password" placeholder="Password" style="min-width:200px;" />
         <button id="authSubmitBtn" type="button">Sign In</button>
@@ -259,7 +287,7 @@
                 <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="Mistlordrx">Mistlordrx</button>
                 <button type="button" class="roster-chip-btn btn-secondary btn-sm" data-artist="KyleBoomin">KyleBoomin</button>
               </div>
-              <div style="display:flex; flex-wrap:wrap; align-items:center;">
+              <div style="display:flex; flex-wrap:wrap; align-items:center; gap:8px;">
                 <select id="labelPlatSelect">
                   <option value="spotify">Spotify</option>
                   <option value="soundcloud">SoundCloud</option>
@@ -369,6 +397,49 @@
     </div>
   </div>
 
+  <!-- ACCOUNT MODAL (Accessible from Top Nav on Any View) -->
+  <div id="accountModal" class="account-modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="accountModalTitle">
+    <div class="account-modal-card">
+      <div class="row-between" style="margin-bottom:10px;">
+        <h2 id="accountModalTitle" style="margin:0;">Account</h2>
+        <button id="closeAccountModalBtn" class="btn-secondary btn-sm" type="button">✕ Close</button>
+      </div>
+
+      <div id="accountSignedOutView">
+        <p class="muted" style="margin-top:0;">Sign in or create an account to save credits, claim bonus drops, and unlock Riverside tracks.</p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <input id="modalUsernameInput" placeholder="Handle (e.g. Edac)" />
+          <input id="modalPasswordInput" type="password" placeholder="Password (min 4 chars)" />
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+            <button id="modalSignInBtn" class="btn-sm" type="button">Sign In</button>
+            <button id="modalSignUpBtn" class="btn-secondary btn-sm" type="button">Create Account</button>
+          </div>
+        </div>
+        <p id="modalAuthMsg" class="muted" style="margin:10px 0 0;"></p>
+      </div>
+
+      <div id="accountSignedInView" class="hidden">
+        <p class="muted" style="margin:0 0 4px;">Signed in as</p>
+        <h3 id="acctHandleDisplay" style="margin:0 0 10px;">@user</h3>
+        <div class="account-stats-grid">
+          <div class="account-stat-box">
+            <div class="muted" style="font-size:12px;">Credit Balance</div>
+            <strong id="acctCreditsDisplay" style="font-size:20px;">0</strong>
+          </div>
+          <div class="account-stat-box">
+            <div class="muted" style="font-size:12px;">Verified Plays</div>
+            <strong id="acctListensDisplay" style="font-size:20px;">0</strong>
+          </div>
+        </div>
+        <p id="acctOffersSummary" class="muted" style="font-size:13px; margin:0 0 14px;"></p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button id="acctGoTunezBtn" class="btn-sm" type="button">Open Turbo Tunez</button>
+          <button id="acctSignOutBtn" class="btn-secondary btn-sm" type="button">Sign Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- FLOATING BOTTOM LIVE TRAFFIC WIDGET (Green Dot = Online Now, Red Dot = Visits Today) -->
   <aside class="live-traffic-box" aria-label="Live site traffic">
     <div class="traffic-row">
@@ -395,9 +466,57 @@
     const STORAGE_KEY = 'turbo_tunez_session_v2';
     const VISITOR_KEY = 'edac_live_visitor_id_v1';
     const OFFER_CLAIM_PREFIX = 'yckack_offer_claimed_';
+    const ARG_UNLOCK_PREFIX = 'yckack_riverside_arg_';
     const LISTEN_GOAL = 28;
     const MIN_CAMPAIGN_BUDGET = 3;
     const LABEL_ADMIN_HANDLES = ['edac', 'cadesawmassacre', 'cadeloeffler'];
+
+    const RIVERSIDE_ARG_SPOTS = [
+      {
+        id: 'mt_rubidoux',
+        trackTitle: 'Bonus Track 01 — Summit Cold',
+        spotName: 'Mount Rubidoux Summit',
+        hint: 'Near the cross / summit trail marker in Riverside',
+        lat: 33.9936,
+        lng: -117.4053,
+        radiusMeters: 250,
+        passcode: 'RUBI1',
+        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+      },
+      {
+        id: 'victoria_ave',
+        trackTitle: 'Bonus Track 02 — Palm Boulevard',
+        spotName: 'Victoria Avenue Median',
+        hint: 'Along Victoria Ave in Riverside',
+        lat: 33.9372,
+        lng: -117.3924,
+        radiusMeters: 250,
+        passcode: 'VICT2',
+        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+      },
+      {
+        id: 'downtown_mall',
+        trackTitle: 'Bonus Track 03 — Main Street Ghost',
+        spotName: 'Downtown Riverside / Mission Inn',
+        hint: 'Around Main St & 7th St in Downtown Riverside',
+        lat: 33.9834,
+        lng: -117.3752,
+        radiusMeters: 250,
+        passcode: 'MAIN3',
+        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+      },
+      {
+        id: 'fairmount_park',
+        trackTitle: 'Bonus Track 04 — Lake Evans Drift',
+        spotName: 'Fairmount Park',
+        hint: 'Near Lake Evans in Riverside',
+        lat: 33.9994,
+        lng: -117.3865,
+        radiusMeters: 250,
+        passcode: 'LAKE4',
+        privateLink: 'https://soundcloud.com/user-958382692/sets/you-cant-kill-a-cold-killa'
+      }
+    ];
 
     let currentUser = null;
     let authMode = 'signin';
@@ -419,10 +538,126 @@
     let pendingUri = null;
     let scActionState = { like: false, repost: false, follow: false };
 
-    // ---------------------------------------------------------
-    // 1. REAL-TIME ONLINE NOW (GREEN DOT) + VISITS TODAY (RED DOT)
-    //    Uses Supabase Realtime Presence + 3-second polling/heartbeat
-    // ---------------------------------------------------------
+    function distanceMeters(lat1, lon1, lat2, lon2) {
+      const toRad = (deg) => (deg * Math.PI) / 180;
+      const R = 6371000;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+      return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function isSpotUnlocked(spotId) {
+      return localStorage.getItem(`${ARG_UNLOCK_PREFIX}${spotId}`) === '1';
+    }
+
+    function markSpotUnlocked(spotId) {
+      localStorage.setItem(`${ARG_UNLOCK_PREFIX}${spotId}`, '1');
+      renderRiversideArgSpots();
+    }
+
+    function renderRiversideArgSpots() {
+      const grid = document.getElementById('riversideArgGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      RIVERSIDE_ARG_SPOTS.forEach((spot) => {
+        const unlocked = isSpotUnlocked(spot.id);
+        const card = document.createElement('div');
+        card.className = 'arg-spot';
+        card.innerHTML = `
+          <div><strong>${spot.trackTitle}</strong></div>
+          <div class="muted" style="font-size:12px; margin-top:4px;">${spot.spotName} — ${spot.hint}</div>
+        `;
+
+        if (unlocked) {
+          const box = document.createElement('div');
+          box.className = 'arg-unlocked-box';
+          box.innerHTML = `
+            <div><strong>Unlocked ✓</strong></div>
+            <a href="${spot.privateLink}" target="_blank" rel="noopener noreferrer" style="color:#6ef29b; font-weight:700;">Open Private Bonus Link ↗</a>
+          `;
+          card.appendChild(box);
+        } else {
+          const controls = document.createElement('div');
+          controls.className = 'arg-controls';
+
+          const codeInput = document.createElement('input');
+          codeInput.type = 'text';
+          codeInput.placeholder = 'Code (e.g. RUBI1)';
+          codeInput.style.cssText = 'flex:1 1 110px; min-width:100px; margin-bottom:0;';
+
+          const codeBtn = document.createElement('button');
+          codeBtn.type = 'button';
+          codeBtn.className = 'btn-secondary btn-sm';
+          codeBtn.textContent = 'Redeem Code';
+
+          const gpsBtn = document.createElement('button');
+          gpsBtn.type = 'button';
+          gpsBtn.className = 'btn-sm';
+          gpsBtn.textContent = 'Check GPS';
+
+          const statusEl = document.getElementById('riversideArgStatus');
+
+          codeBtn.onclick = () => {
+            const entered = codeInput.value.trim().toUpperCase();
+            if (!entered) {
+              statusEl.className = 'error-text';
+              statusEl.textContent = `Enter a code for ${spot.spotName}.`;
+              return;
+            }
+            if (entered === spot.passcode.toUpperCase()) {
+              markSpotUnlocked(spot.id);
+              statusEl.className = 'success-text';
+              statusEl.textContent = `Code accepted! Unlocked ${spot.trackTitle} (${spot.spotName}).`;
+            } else {
+              statusEl.className = 'error-text';
+              statusEl.textContent = `Invalid code for ${spot.spotName}.`;
+            }
+          };
+
+          gpsBtn.onclick = () => {
+            if (!navigator.geolocation) {
+              statusEl.className = 'error-text';
+              statusEl.textContent = 'Geolocation is not supported on this browser—use the passcode box instead.';
+              return;
+            }
+            statusEl.className = 'muted';
+            statusEl.textContent = `Checking your Riverside GPS near ${spot.spotName}...`;
+            navigator.geolocation.getCurrentPosition(
+              (pos) => {
+                const dist = Math.round(
+                  distanceMeters(pos.coords.latitude, pos.coords.longitude, spot.lat, spot.lng)
+                );
+                if (dist <= spot.radiusMeters) {
+                  markSpotUnlocked(spot.id);
+                  statusEl.className = 'success-text';
+                  statusEl.textContent = `You’re within ${dist}m of ${spot.spotName}! Unlocked ${spot.trackTitle}.`;
+                } else {
+                  statusEl.className = 'error-text';
+                  statusEl.textContent = `You are ~${dist}m away from ${spot.spotName} (need within ${spot.radiusMeters}m), or enter the spot code.`;
+                }
+              },
+              () => {
+                statusEl.className = 'error-text';
+                statusEl.textContent = 'Location permission denied or unavailable—enter a code or try again.';
+              },
+              { enableHighAccuracy: true, timeout: 10000 }
+            );
+          };
+
+          controls.appendChild(codeInput);
+          controls.appendChild(codeBtn);
+          controls.appendChild(gpsBtn);
+          card.appendChild(controls);
+        }
+
+        grid.appendChild(card);
+      });
+    }
+
     function getVisitorId() {
       let vid = localStorage.getItem(VISITOR_KEY);
       if (!vid) {
@@ -444,7 +679,6 @@
       document.getElementById('visitsTodayCount').textContent = String(liveToday);
     }
 
-    // Supabase Realtime Presence channel for sub-3s live online count
     const presenceChannel = supabase.channel('edac-live-visitors', {
       config: { presence: { key: visitorId } }
     });
@@ -465,7 +699,6 @@
         }
       });
 
-    // Optional DB heartbeat + Visits Today sync (every 3 seconds)
     let siteVisitsTableAvailable = true;
 
     async function syncTrafficHeartbeatAndCounts() {
@@ -476,8 +709,8 @@
 
       const now = new Date();
       const nowIso = now.toISOString();
-      const todayKey = nowIso.slice(0, 10); // YYYY-MM-DD UTC
-      const activeCutoffIso = new Date(now.getTime() - 12000).toISOString(); // active within 12s
+      const todayKey = nowIso.slice(0, 10);
+      const activeCutoffIso = new Date(now.getTime() - 12000).toISOString();
 
       try {
         const { error: upsertErr } = await supabase
@@ -512,17 +745,12 @@
       }
     }
 
-    // Run immediately and refresh every 3 seconds
     syncTrafficHeartbeatAndCounts();
     setInterval(syncTrafficHeartbeatAndCounts, 3000);
 
-    // ---------------------------------------------------------
-    // 2. CREDITS EARNED CHART (TURBO TUNEZ CORNER LEADERBOARD)
-    // ---------------------------------------------------------
     async function loadCreditsEarnedChart() {
       const container = document.getElementById('creditsChartList');
       try {
-        // Aggregate verified song listens from `listens` + join profile handles
         const [{ data: listensRows, error: listensErr }, { data: profilesRows }] = await Promise.all([
           supabase.from('listens').select('user_id, did_like, did_repost, did_follow'),
           supabase.from('profiles').select('id, username, credits')
@@ -583,9 +811,6 @@
 
     document.getElementById('refreshChartBtn').onclick = loadCreditsEarnedChart;
 
-    // ---------------------------------------------------------
-    // 3. SITE NAVIGATION & HOMEPAGE INTERACTIONS
-    // ---------------------------------------------------------
     function isAdminUser() {
       return Boolean(currentUser && LABEL_ADMIN_HANDLES.includes(currentUser.username.toLowerCase()));
     }
@@ -612,6 +837,34 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function openAccountModal() {
+      updateAuthUI();
+      document.getElementById('modalAuthMsg').textContent = '';
+      document.getElementById('accountModal').classList.remove('hidden');
+    }
+
+    function closeAccountModal() {
+      document.getElementById('accountModal').classList.add('hidden');
+    }
+
+    document.getElementById('navAccountBtn').onclick = openAccountModal;
+    document.getElementById('closeAccountModalBtn').onclick = closeAccountModal;
+    document.getElementById('accountModal').addEventListener('click', (e) => {
+      if (e.target.id === 'accountModal') closeAccountModal();
+    });
+    document.getElementById('acctGoTunezBtn').onclick = () => {
+      closeAccountModal();
+      setSiteMode('tunez');
+    };
+    document.getElementById('acctSignOutBtn').onclick = () => {
+      currentUser = null;
+      userListenCounts = new Map();
+      localStorage.removeItem(STORAGE_KEY);
+      updateAuthUI();
+      loadQueue();
+      loadNeedCreditsTracks();
+    };
+
     document.getElementById('edacBrandLink').onclick = (e) => {
       e.preventDefault();
       setSiteMode('music');
@@ -631,6 +884,10 @@
       document.getElementById('bonusOfferSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
 
+    document.getElementById('heroArgScrollBtn').onclick = () => {
+      document.getElementById('riversideArgSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+
     document.getElementById('streamGifTrigger').onclick = () => {
       const panel = document.getElementById('streamPickerPanel');
       const trigger = document.getElementById('streamGifTrigger');
@@ -645,10 +902,12 @@
 
     function syncOfferButtonsUI() {
       const statusEl = document.getElementById('bonusOfferStatus');
+      let claimedCount = 0;
       document.querySelectorAll('.claim-offer-btn').forEach((btn) => {
         const offerKey = btn.dataset.offer;
         const baseCredits = Number(btn.dataset.credits || 0);
         const alreadyClaimed = Boolean(currentUser && localStorage.getItem(getOfferStorageKey(offerKey)));
+        if (alreadyClaimed) claimedCount += 1;
 
         if (!currentUser) {
           btn.disabled = false;
@@ -662,9 +921,14 @@
         }
       });
 
+      const offersSummary = document.getElementById('acctOffersSummary');
+      if (offersSummary) {
+        offersSummary.textContent = `Cold Killa Bonus Drops Claimed: ${claimedCount} / 3`;
+      }
+
       if (!currentUser) {
         statusEl.className = 'muted';
-        statusEl.textContent = 'Sign in to your Turbo Tunez account (on the Turbo Tunez tab) to add +20, +40, or +50 credits directly to your balance.';
+        statusEl.textContent = 'Sign in to your Turbo Tunez account (on the Turbo Tunez or Account tab) to add +20, +40, or +50 credits directly to your balance.';
       } else {
         statusEl.className = 'success-text';
         statusEl.textContent = `Signed in as @${currentUser.username} · Current balance: ${currentUser.credits} credits.`;
@@ -675,10 +939,7 @@
       btn.onclick = async () => {
         const statusEl = document.getElementById('bonusOfferStatus');
         if (!currentUser) {
-          setSiteMode('tunez');
-          document.getElementById('authCard').classList.remove('hidden');
-          document.getElementById('usernameInput').focus();
-          alert('Sign in or create an account first, then claim your +20 / +40 / +50 bonus credits!');
+          openAccountModal();
           return;
         }
 
@@ -931,20 +1192,34 @@
       const badge = document.getElementById('headerUserBadge');
       const promoteBal = document.getElementById('promoteBalanceDisplay');
       const adminBox = document.getElementById('labelAdminBox');
+      const navAcctBtn = document.getElementById('navAccountBtn');
+      const signedOutView = document.getElementById('accountSignedOutView');
+      const signedInView = document.getElementById('accountSignedInView');
 
       if (currentUser) {
         authCard.classList.add('hidden');
         headerCredits.textContent = currentUser.credits;
         badge.textContent = `@${currentUser.username}`;
         badge.classList.remove('hidden');
+        navAcctBtn.textContent = `@${currentUser.username}`;
         promoteBal.textContent = currentUser.credits;
         adminBox.classList.toggle('hidden', !isAdminUser());
+        signedOutView.classList.add('hidden');
+        signedInView.classList.remove('hidden');
+        document.getElementById('acctHandleDisplay').textContent = `@${currentUser.username}`;
+        document.getElementById('acctCreditsDisplay').textContent = String(currentUser.credits ?? 0);
+        let totalListens = 0;
+        userListenCounts.forEach((v) => { totalListens += v; });
+        document.getElementById('acctListensDisplay').textContent = String(totalListens);
       } else {
         authCard.classList.remove('hidden');
         headerCredits.textContent = '0';
         badge.classList.add('hidden');
+        navAcctBtn.textContent = 'Account';
         promoteBal.textContent = '0';
         adminBox.classList.add('hidden');
+        signedOutView.classList.remove('hidden');
+        signedInView.classList.add('hidden');
       }
       syncOfferButtonsUI();
     }
@@ -960,19 +1235,15 @@
       }
     }
 
-    async function handleAuthSubmit() {
-      const handle = document.getElementById('usernameInput').value.trim();
-      const password = document.getElementById('passwordInput').value;
-      const statusEl = document.getElementById('userStatus');
-
+    async function performAuth(handle, password, mode, msgTargetEl) {
       if (!handle || password.length < 4) {
-        statusEl.className = 'error-text';
-        statusEl.textContent = 'Enter a handle and a password (at least 4 characters).';
+        msgTargetEl.className = 'error-text';
+        msgTargetEl.textContent = 'Enter a handle and a password (at least 4 characters).';
         return;
       }
 
-      statusEl.className = 'muted';
-      statusEl.textContent = authMode === 'signup' ? 'Creating account...' : 'Signing in...';
+      msgTargetEl.className = 'muted';
+      msgTargetEl.textContent = mode === 'signup' ? 'Creating account...' : 'Signing in...';
       const pwHash = await hashPassword(password);
 
       const { data: existing, error: fetchErr } = await supabase
@@ -982,15 +1253,15 @@
         .maybeSingle();
 
       if (fetchErr) {
-        statusEl.className = 'error-text';
-        statusEl.textContent = 'Database error: ' + fetchErr.message;
+        msgTargetEl.className = 'error-text';
+        msgTargetEl.textContent = 'Database error: ' + fetchErr.message;
         return;
       }
 
-      if (authMode === 'signup') {
+      if (mode === 'signup') {
         if (existing) {
-          statusEl.className = 'error-text';
-          statusEl.textContent = 'That handle is already taken. Switch to Sign In or pick another handle.';
+          msgTargetEl.className = 'error-text';
+          msgTargetEl.textContent = 'That handle is already taken. Switch to Sign In or pick another handle.';
           return;
         }
         const { data: created, error: createErr } = await supabase
@@ -999,15 +1270,15 @@
           .select()
           .single();
         if (createErr) {
-          statusEl.className = 'error-text';
-          statusEl.textContent = 'Could not create account: ' + createErr.message;
+          msgTargetEl.className = 'error-text';
+          msgTargetEl.textContent = 'Could not create account: ' + createErr.message;
           return;
         }
         currentUser = created;
       } else {
         if (!existing) {
-          statusEl.className = 'error-text';
-          statusEl.textContent = 'No account found with that handle. Click "Create Account" above.';
+          msgTargetEl.className = 'error-text';
+          msgTargetEl.textContent = 'No account found with that handle. Click "Create Account" above.';
           return;
         }
         if (!existing.password_hash) {
@@ -1019,8 +1290,8 @@
             .single();
           currentUser = upgraded || existing;
         } else if (existing.password_hash !== pwHash) {
-          statusEl.className = 'error-text';
-          statusEl.textContent = 'Incorrect password.';
+          msgTargetEl.className = 'error-text';
+          msgTargetEl.textContent = 'Incorrect password.';
           return;
         } else {
           currentUser = existing;
@@ -1029,13 +1300,32 @@
 
       localStorage.setItem(STORAGE_KEY, JSON.stringify({ id: currentUser.id, username: currentUser.username }));
       document.getElementById('passwordInput').value = '';
-      statusEl.textContent = '';
+      document.getElementById('modalPasswordInput').value = '';
+      msgTargetEl.textContent = '';
       await loadUserListenHistory();
       updateAuthUI();
       await loadQueue();
       await loadNeedCreditsTracks();
       await loadCreditsEarnedChart();
     }
+
+    async function handleAuthSubmit() {
+      const handle = document.getElementById('usernameInput').value.trim();
+      const password = document.getElementById('passwordInput').value;
+      await performAuth(handle, password, authMode, document.getElementById('userStatus'));
+    }
+
+    document.getElementById('modalSignInBtn').onclick = async () => {
+      const handle = document.getElementById('modalUsernameInput').value.trim();
+      const password = document.getElementById('modalPasswordInput').value;
+      await performAuth(handle, password, 'signin', document.getElementById('modalAuthMsg'));
+    };
+
+    document.getElementById('modalSignUpBtn').onclick = async () => {
+      const handle = document.getElementById('modalUsernameInput').value.trim();
+      const password = document.getElementById('modalPasswordInput').value;
+      await performAuth(handle, password, 'signup', document.getElementById('modalAuthMsg'));
+    };
 
     async function refreshUser() {
       if (!currentUser) return;
@@ -1222,6 +1512,8 @@
     function buildTopUpControls(track) {
       const wrap = document.createElement('div');
       wrap.className = 'row-actions';
+      wrap.style.cssText = 'display:flex; align-items:center; gap:6px; flex-wrap:wrap;';
+
       [1, 3].forEach((amt) => {
         const b = document.createElement('button');
         b.textContent = `+${amt} Credit${amt > 1 ? 's' : ''}`;
@@ -1231,6 +1523,35 @@
         b.onclick = () => addCreditsToTrack(track, amt);
         wrap.appendChild(b);
       });
+
+      const customInput = document.createElement('input');
+      customInput.type = 'number';
+      customInput.min = '1';
+      customInput.step = '1';
+      customInput.placeholder = 'Custom';
+      customInput.ariaLabel = 'Custom credit amount';
+      customInput.style.cssText = 'width:78px; margin-bottom:0; padding:5px 8px; font-size:12px;';
+      customInput.disabled = !currentUser || currentUser.credits < 1;
+
+      const customBtn = document.createElement('button');
+      customBtn.type = 'button';
+      customBtn.textContent = '+ Add';
+      customBtn.className = 'btn-sm';
+      customBtn.disabled = !currentUser || currentUser.credits < 1;
+
+      const submitCustom = () => {
+        const amt = Math.floor(Number(customInput.value) || 0);
+        if (amt < 1) return alert('Enter at least 1 credit to add.');
+        addCreditsToTrack(track, amt);
+      };
+
+      customBtn.onclick = submitCustom;
+      customInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') submitCustom();
+      });
+
+      wrap.appendChild(customInput);
+      wrap.appendChild(customBtn);
       return wrap;
     }
 
@@ -1346,9 +1667,7 @@
     function startTrackSession(track) {
       if (activeTrack && !creditClaimedForTrack) return;
       if (!currentUser) {
-        document.getElementById('authCard').classList.remove('hidden');
-        document.getElementById('usernameInput').focus();
-        alert('Sign in or create a free account first so your credits can be saved!');
+        openAccountModal();
         return;
       }
       const plat = track.platform || 'spotify';
@@ -1534,6 +1853,7 @@
     };
 
     (async () => {
+      renderRiversideArgSpots();
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         try {

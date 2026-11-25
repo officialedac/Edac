@@ -375,18 +375,16 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
-.arg-controls input {
-  flex: 1 1 115px;
-  min-width: 100px;
+.arg-controls button {
   margin-right: 0;
   margin-bottom: 0;
 }
 
 .arg-unlocked-box {
-  margin-top: 12px;
+  margin-top: 14px;
   padding: 10px 12px;
   border-radius: 10px;
   background: rgba(29, 185, 84, 0.15);

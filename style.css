@@ -17,7 +17,6 @@ body {
   overflow-x: hidden;
 }
 
-/* You Can't Kill A Cold Killa GIF Backdrop */
 .yckack-bg {
   position: fixed;
   inset: 0;
@@ -29,7 +28,6 @@ body {
   pointer-events: none;
 }
 
-/* Turbo Tunez Lava Lamp Video Backdrop */
 .bg-video {
   position: fixed;
   inset: 0;
@@ -59,7 +57,6 @@ body {
   max-width: 1120px;
 }
 
-/* Top Navigation */
 .topbar {
   position: sticky;
   top: 0;
@@ -157,7 +154,6 @@ body {
   font-size: 12px;
 }
 
-/* Hero Section */
 .hero {
   text-align: center;
   padding: 24px 12px 28px;
@@ -229,7 +225,6 @@ h1 {
   cursor: pointer;
 }
 
-/* Two GIF Cards: tapebuy1.gif & tapestream1.gif */
 .media-stage {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -338,7 +333,6 @@ h1 {
 .sp-link:hover { border-color: #1db954; background: rgba(29, 185, 84, 0.2); }
 .am-link:hover { border-color: #f43f5e; background: rgba(244, 63, 94, 0.2); }
 
-/* Riverside CA ARG Bonus Track Section */
 .arg-section {
   margin-top: 22px;
   margin-bottom: 22px;
@@ -392,7 +386,6 @@ h1 {
   font-size: 13px;
 }
 
-/* Generous +20 / +40 / +50 Credit Bonus Card */
 .bonus-card {
   background: rgba(9, 15, 25, 0.88);
   backdrop-filter: blur(12px);
@@ -537,7 +530,6 @@ h1 {
   flex-wrap: wrap;
 }
 
-/* Account Modal */
 .account-modal-backdrop {
   position: fixed;
   inset: 0;
@@ -584,7 +576,6 @@ h1 {
   color: #7dd3fc;
 }
 
-/* Turbo Tunez Corner Split Layout */
 .tunez-split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 285px;
@@ -658,7 +649,6 @@ h1 {
   color: #9ba3bc;
 }
 
-/* Bottom Live Traffic Indicator (Green Dot Online + Red Dot Visits Today + Ice Dot All-Time) */
 .live-traffic-box {
   position: fixed;
   left: 16px;
@@ -713,7 +703,6 @@ h1 {
   50% { opacity: 0.45; transform: scale(0.88); }
 }
 
-/* Turbo Tunez Cards & Controls */
 .card {
   background: rgba(20, 22, 30, 0.88);
   backdrop-filter: blur(10px);

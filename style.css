@@ -8,7 +8,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0 16px 88px;
+  padding: 0 16px 104px;
   min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #f4f7fb;
@@ -561,18 +561,27 @@ h1 {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
 }
 
-.account-stats-grid {
+.account-stats-grid,
+.founder-stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   margin: 14px 0;
 }
 
-.account-stat-box {
+.account-stat-box,
+.founder-stat-box {
   padding: 12px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.founder-stat-val {
+  display: block;
+  margin-top: 4px;
+  font-size: 20px;
+  color: #7dd3fc;
 }
 
 /* Turbo Tunez Corner Split Layout */
@@ -649,7 +658,7 @@ h1 {
   color: #9ba3bc;
 }
 
-/* Bottom Live Traffic Indicator (Green Dot Online + Red Dot Visits Today) */
+/* Bottom Live Traffic Indicator (Green Dot Online + Red Dot Visits Today + Ice Dot All-Time) */
 .live-traffic-box {
   position: fixed;
   left: 16px;
@@ -675,7 +684,8 @@ h1 {
 }
 
 .dot-green,
-.dot-red {
+.dot-red,
+.dot-ice {
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -691,6 +701,11 @@ h1 {
 .dot-red {
   background: #ef4444;
   box-shadow: 0 0 8px #ef4444;
+}
+
+.dot-ice {
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
 }
 
 @keyframes pulseGreen {
